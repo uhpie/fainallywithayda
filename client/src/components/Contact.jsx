@@ -48,7 +48,7 @@ function FamilySection({ title, children }) {
 
 export default function Contact() {
   const [ref, visible] = useInView()
-  const { groom, bride, brideParents, groomParents } = config
+  const { bride, brideParents } = config
 
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream-pink`}>
@@ -62,7 +62,6 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Bride's family */}
         <FamilySection title="Keluarga Pengantin Perempuan">
           <ContactCard
             role="Bapa Pengantin"
@@ -78,25 +77,6 @@ export default function Contact() {
             role="Pengantin Perempuan"
             name={bride.fullName}
             contact={bride.contact}
-          />
-        </FamilySection>
-
-        {/* Groom's family */}
-        <FamilySection title="Keluarga Pengantin Lelaki">
-          <ContactCard
-            role="Bapa Pengantin"
-            name={groomParents.father.name}
-            contact={groomParents.father.contact}
-          />
-          <ContactCard
-            role="Ibu Pengantin"
-            name={groomParents.mother.name}
-            contact={groomParents.mother.contact}
-          />
-          <ContactCard
-            role="Pengantin Lelaki"
-            name={groom.fullName}
-            contact={groom.contact}
           />
         </FamilySection>
 
