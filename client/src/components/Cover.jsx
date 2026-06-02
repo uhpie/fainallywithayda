@@ -1,0 +1,102 @@
+import { useState, useEffect } from 'react'
+import { config } from '../config'
+import { FloralTop, FloralBottom } from './FloralDecor'
+
+export default function Cover({ onOpen }) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 150)
+    return () => clearTimeout(t)
+  }, [])
+
+  const { groom, bride, reception } = config
+  const date = new Date(reception.date)
+  const day = date.getDate()
+  const month = date.toLocaleDateString('ms-MY', { month: 'long' })
+  const year = date.getFullYear()
+
+  return (
+    <div className="min-h-screen flex flex-col bg-cream">
+      {/* ── Top floral ── */}
+      <div
+        className={`transition-all duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}
+        style={{ marginBottom: '-20px' }}
+      >
+        <FloralTop />
+      </div>
+
+      {/* ── Main content ── */}
+      <div
+        className={`flex-1 flex flex-col items-center justify-center px-8 pb-6 text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+      >
+        {/* Bismillah */}
+        <p className="arabic text-3xl text-matcha leading-loose mb-5">
+          بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </p>
+
+        {/* Label */}
+        <p className="font-sans text-[9px] tracking-[0.36em] uppercase text-pink mb-4">
+          Walimatul Urus
+        </p>
+
+        {/* Decorative line */}
+        <div className="flex items-center gap-3 mb-5 w-full max-w-[220px]">
+          <div className="flex-1 h-px bg-pink-light/70" />
+          <svg className="w-3 h-3 text-pink/70 rotate-45" viewBox="0 0 10 10" fill="currentColor">
+            <rect width="10" height="10" />
+          </svg>
+          <div className="flex-1 h-px bg-pink-light/70" />
+        </div>
+
+        {/* Names */}
+        <h1 className={`font-script text-[64px] leading-none text-brown mb-1 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+          {bride.name}
+        </h1>
+        <p className="font-serif text-2xl text-matcha italic my-2">&amp;</p>
+        <h1 className={`font-script text-[64px] leading-none text-brown mb-5 transition-all duration-1000 delay-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+          {groom.name}
+        </h1>
+
+        {/* Decorative line */}
+        <div className="flex items-center gap-3 mb-5 w-full max-w-[220px]">
+          <div className="flex-1 h-px bg-pink-light/70" />
+          <svg className="w-2.5 h-2.5 text-matcha/60" viewBox="0 0 10 10" fill="currentColor">
+            <circle cx="5" cy="5" r="4" />
+          </svg>
+          <div className="flex-1 h-px bg-pink-light/70" />
+        </div>
+
+        {/* Date */}
+        <p className="font-serif italic text-black-mid text-2xl">{reception.dayName}</p>
+        <p className="font-sans text-[20px] tracking-[0.05em] text-matcha-deep mt-1 uppercase">
+          {day} {month} {year}
+        </p>
+
+        {/* CTA */}
+        <button
+          onClick={onOpen}
+          className="mt-10 group relative inline-flex items-center gap-2 px-10 py-3.5 border border-pink/70 text-pink font-sans text-[10px] tracking-[0.26em] uppercase hover:bg-pink hover:text-cream hover:border-pink transition-all duration-300"
+        >
+          Buka Jemputan
+          <svg className="w-3 h-3 transition-transform group-hover:translate-x-1" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M2 6 L10 6 M7 3 L10 6 L7 9" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <p className="mt-5 font-sans text-[9px] tracking-[0.22em] text-brown-mid/30 uppercase">
+          scroll ke bawah untuk maklumat
+        </p>
+      </div>
+
+      {/* ── Bottom floral ── */}
+      <div
+        className={`transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
+        style={{ marginTop: '-16px' }}
+      >
+        <FloralBottom />
+      </div>
+    </div>
+  )
+}

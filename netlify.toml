@@ -1,0 +1,11 @@
+[build]
+  base    = "client"
+  command = "npm run build"
+  publish = "dist"
+
+# Proxy semua /api/* ke backend Render
+[[redirects]]
+  from   = "/api/*"
+  to     = "https://wedding-ayda-faizul-api.onrender.com/api/:splat"
+  status = 200
+  force  = true

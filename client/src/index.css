@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-matcha-pale/40 font-serif text-brown;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { @apply bg-pink-pale; }
+  ::-webkit-scrollbar-thumb { @apply bg-pink rounded-full; }
+}
+
+@layer components {
+  /* Phone frame wrapper */
+  .phone-frame {
+    @apply w-full max-w-phone mx-auto min-h-screen bg-cream shadow-phone relative overflow-hidden;
+  }
+
+  /* Scroll-reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  }
+  .revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Section layout */
+  .section-inner {
+    @apply px-7 py-16;
+  }
+
+  /* Section heading */
+  .section-eyebrow {
+    @apply font-sans text-[10px] tracking-[0.32em] uppercase text-pink mb-2;
+  }
+  .section-title {
+    @apply font-serif text-[28px] text-brown font-light leading-tight;
+  }
+
+  /* Pink divider */
+  .petal-divider {
+    @apply flex items-center gap-3 my-5;
+  }
+  .petal-divider::before,
+  .petal-divider::after {
+    content: '';
+    @apply flex-1 h-px bg-pink-light/60;
+  }
+
+  /* Buttons */
+  .btn-pink {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 border border-pink text-pink
+      font-sans text-[10px] tracking-[0.22em] uppercase hover:bg-pink hover:text-cream
+      transition-all duration-300;
+  }
+  .btn-pink-fill {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 bg-pink text-cream
+      font-sans text-[10px] tracking-[0.22em] uppercase hover:bg-pink-deep
+      transition-all duration-300;
+  }
+  .btn-matcha {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3 border border-matcha text-matcha-deep
+      font-sans text-[10px] tracking-[0.22em] uppercase hover:bg-matcha hover:text-cream
+      transition-all duration-300;
+  }
+
+  /* Input */
+  .form-input {
+    @apply w-full border border-pink-light/60 bg-cream px-4 py-3 font-serif text-sm
+      text-brown placeholder:text-brown-mid/35 focus:outline-none focus:border-pink
+      transition-colors duration-200;
+  }
+}
+
+.arabic { direction: rtl; font-family: 'Amiri', serif; }
+
+/* Tab switch fade */
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* iOS safe area bottom padding for home-bar devices */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
