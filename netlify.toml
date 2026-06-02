@@ -6,6 +6,6 @@
 # Proxy semua /api/* ke backend Render
 [[redirects]]
   from   = "/api/*"
-  to     = "https://wedding-ayda-faizul-api.onrender.com/api/:splat"
+  to     = "https://fainallywithayda.onrender.com/api/:splat"
   status = 200
   force  = true
