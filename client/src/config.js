@@ -26,6 +26,7 @@ export const config = {
   brideParents: {
     father: { name: 'Jasni bin Mahmood', contact: '+601XXXXXXXX' },
     mother: { name: 'Norzalelawati binti Sakiban', contact: '+601XXXXXXXX' },
+    brother: { name: 'Name', contact: '+60XXXXXXXXX' },
   },
   // Ibu bapa pengantin lelaki
   groomParents: {
