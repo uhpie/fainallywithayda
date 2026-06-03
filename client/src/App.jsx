@@ -9,7 +9,7 @@ import Gallery from './components/Gallery'
 import Location from './components/Location'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import FloralFrame from './components/FloralFrame'
+import Overlay from './components/Overlay'
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -145,7 +145,7 @@ export default function App() {
         className="w-full max-w-phone bg-cream shadow-phone flex flex-col relative"
         style={{ height: '100dvh', overflowY: opened ? 'hidden' : 'auto' }}
       >
-        <FloralFrame opened={opened} />
+        <Overlay />
         {!opened ? (
           /* Cover fills full height */
           <Cover onOpen={() => { setOpened(true); setTab('home') }} />
