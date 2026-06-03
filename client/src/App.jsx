@@ -9,6 +9,7 @@ import Gallery from './components/Gallery'
 import Location from './components/Location'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import FloralFrame from './components/FloralFrame'
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -77,7 +78,7 @@ const TABS = [
 
 function BottomNav({ active, onChange }) {
   return (
-    <nav className="flex-shrink-0 border-t border-pink-light/50 bg-cream/95 backdrop-blur-sm flex safe-bottom">
+    <nav className="relative z-10 flex-shrink-0 border-t border-pink-light/50 bg-cream/95 backdrop-blur-sm flex safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
         const on = active === id
         return (
@@ -141,9 +142,10 @@ export default function App() {
       }}
     >
       <div
-        className="w-full max-w-phone bg-cream shadow-phone flex flex-col"
+        className="w-full max-w-phone bg-cream shadow-phone flex flex-col relative"
         style={{ height: '100dvh', overflowY: opened ? 'hidden' : 'auto' }}
       >
+        <FloralFrame opened={opened} />
         {!opened ? (
           /* Cover fills full height */
           <Cover onOpen={() => { setOpened(true); setTab('home') }} />
