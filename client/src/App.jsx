@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import Cover from './components/Cover'
 import Opening from './components/Opening'
-import Couple from './components/Couple'
 import Event from './components/Event'
 import Countdown from './components/Countdown'
 import RSVP from './components/RSVP'
@@ -108,7 +107,7 @@ function BottomNav({ active, onChange }) {
 
 function TabContent({ tab }) {
   switch (tab) {
-    case 'home':     return <><Opening /><Couple /><Footer /></>
+    case 'home':     return <><Opening /><Footer /></>
     case 'event':    return <><Event /><Countdown /></>
     case 'rsvp':     return <><RSVP /><Wishes /></>
     case 'gallery':  return <Gallery />
@@ -143,7 +142,7 @@ export default function App() {
     >
       <div
         className="w-full max-w-phone bg-cream shadow-phone flex flex-col"
-        style={{ height: '100dvh' }}
+        style={{ height: '100dvh', overflowY: opened ? 'hidden' : 'auto' }}
       >
         {!opened ? (
           /* Cover fills full height */

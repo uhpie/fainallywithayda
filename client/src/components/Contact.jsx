@@ -57,7 +57,7 @@ export default function Contact() {
           <p className="section-eyebrow">Hubungi Kami</p>
           <h2 className="section-title">Maklumat Perhubungan</h2>
           <FloralDivider />
-          <p className="font-serif italic text-brown-mid/60 text-xs mb-8">
+          <p className="font-serif italic text-black-mid/60 text-xs mb-8">
             Sebarang pertanyaan, sila hubungi kami
           </p>
         </div>

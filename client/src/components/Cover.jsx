@@ -2,6 +2,55 @@ import { useState, useEffect } from 'react'
 import { config } from '../config'
 import { FloralTop, FloralBottom } from './FloralDecor'
 
+// Floating flower positions — left%, top%, size(px), animation delay, opacity
+const FLOATERS = [
+  { x: '8%',  y: '28%', size: 22, delay: '0s',    opacity: 0.18 },
+  { x: '82%', y: '22%', size: 16, delay: '1.2s',  opacity: 0.15 },
+  { x: '88%', y: '55%', size: 20, delay: '2.1s',  opacity: 0.18 },
+  { x: '6%',  y: '58%', size: 14, delay: '0.7s',  opacity: 0.14 },
+  { x: '78%', y: '72%', size: 18, delay: '1.8s',  opacity: 0.16 },
+  { x: '14%', y: '76%', size: 12, delay: '2.8s',  opacity: 0.13 },
+  { x: '55%', y: '12%', size: 13, delay: '1.5s',  opacity: 0.12 },
+  { x: '35%', y: '82%', size: 10, delay: '0.4s',  opacity: 0.12 },
+  { x: '92%', y: '38%', size: 11, delay: '3.2s',  opacity: 0.13 },
+  { x: '2%',  y: '42%', size: 13, delay: '2.4s',  opacity: 0.12 },
+]
+
+function FloatingFlower({ x, y, size, delay, opacity }) {
+  const petals = [0, 72, 144, 216, 288]
+  const r = size / 2
+  return (
+    <svg
+      viewBox={`0 0 ${size} ${size}`}
+      style={{
+        position: 'absolute',
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        opacity,
+        animation: `float 4s ease-in-out infinite`,
+        animationDelay: delay,
+        pointerEvents: 'none',
+      }}
+    >
+      <g transform={`translate(${r},${r})`}>
+        {petals.map((a) => (
+          <ellipse
+            key={a}
+            cx={0} cy={-r * 0.52}
+            rx={r * 0.36} ry={r * 0.54}
+            fill="#E07898"
+            transform={`rotate(${a})`}
+          />
+        ))}
+        <circle cx={0} cy={0} r={r * 0.28} fill="#FFE8F0" />
+        <circle cx={0} cy={0} r={r * 0.13} fill="#FFE08A" />
+      </g>
+    </svg>
+  )
+}
+
 export default function Cover({ onOpen }) {
   const [visible, setVisible] = useState(false)
 
@@ -17,10 +66,16 @@ export default function Cover({ onOpen }) {
   const year = date.getFullYear()
 
   return (
-    <div className="min-h-screen flex flex-col bg-cream">
+    <div className="relative min-h-screen flex flex-col bg-cream overflow-hidden">
+
+      {/* ── Floating flower overlay ── */}
+      {visible && FLOATERS.map((f, i) => (
+        <FloatingFlower key={i} {...f} />
+      ))}
+
       {/* ── Top floral ── */}
       <div
-        className={`transition-all duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}
+        className={`relative z-10 transition-all duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginBottom: '-20px' }}
       >
         <FloralTop />
@@ -28,8 +83,9 @@ export default function Cover({ onOpen }) {
 
       {/* ── Main content ── */}
       <div
-        className={`flex-1 flex flex-col items-center justify-center px-8 pb-6 text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+        className={`relative z-10 flex-1 flex flex-col items-center justify-center px-8 pb-6 text-center transition-all duration-1000 delay-300 ${
+          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
       >
         {/* Bismillah */}
         <p className="arabic text-3xl text-matcha leading-loose mb-5">
@@ -69,7 +125,7 @@ export default function Cover({ onOpen }) {
         </div>
 
         {/* Date */}
-        <p className="font-serif italic text-black-mid text-2xl">{reception.dayName}</p>
+        <p className="font-serif italic text-brown-mid text-2xl">{reception.dayName}</p>
         <p className="font-sans text-[20px] tracking-[0.05em] text-matcha-deep mt-1 uppercase">
           {day} {month} {year}
         </p>
@@ -92,7 +148,7 @@ export default function Cover({ onOpen }) {
 
       {/* ── Bottom floral ── */}
       <div
-        className={`transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
+        className={`relative z-10 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginTop: '-16px' }}
       >
         <FloralBottom />
