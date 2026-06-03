@@ -1,6 +1,5 @@
 import useInView from '../hooks/useInView'
 import { config } from '../config'
-import { FloralDivider, FloralCorner } from './FloralDecor'
 
 function ContactCard({ person, label, relation = 'Putera' }) {
   return (
@@ -38,13 +37,13 @@ export default function Couple() {
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream relative overflow-hidden`}>
       {/* Corner florals */}
-      <FloralCorner className="absolute top-0 left-0 opacity-40" />
-      <FloralCorner className="absolute top-0 right-0 opacity-40 scale-x-[-1]" />
+      
+      
 
       <div className="section-inner text-center">
         <p className="section-eyebrow">Pengantin</p>
         <h2 className="section-title">Bakal Pengantin</h2>
-        <FloralDivider />
+        
 
         <div className="space-y-10 mt-6">
           <ContactCard person={bride} label="Pengantin Perempuan" relation="Puteri" />

@@ -1,5 +1,4 @@
 import { config } from '../config'
-import { FloralBottom } from './FloralDecor'
 
 export default function Footer() {
   const { groom, bride, reception } = config
@@ -9,7 +8,7 @@ export default function Footer() {
     <footer className="bg-cream-pink text-center">
       {/* Floral top */}
       <div style={{ transform: 'scaleY(-1)', marginBottom: '-8px' }}>
-        <FloralBottom />
+        
       </div>
 
       <div className="px-8 pb-14 pt-4">

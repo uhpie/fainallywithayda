@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import useInView from '../hooks/useInView'
-import { FloralDivider } from './FloralDecor'
 
 const INIT = { name: '', phone: '', pax: '1', attendance: 'hadir', message: '' }
 
@@ -42,7 +41,7 @@ export default function RSVP() {
         <div className="text-center">
           <p className="section-eyebrow">Kehadiran</p>
           <h2 className="section-title">RSVP</h2>
-          <FloralDivider />
+          
           <p className="font-serif italic text-black-mid/60 text-md mb-6">
             Sila maklumkan kehadiran anda
           </p>

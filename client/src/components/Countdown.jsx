@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import useInView from '../hooks/useInView'
 import { config } from '../config'
-import { FloralDivider } from './FloralDecor'
 
 function pad(n) { return String(n).padStart(2, '0') }
 
@@ -48,7 +47,7 @@ export default function Countdown() {
       <div className="section-inner text-center">
         <p className="section-eyebrow">Kiraan Hari</p>
         <h2 className="section-title">Menghitung Hari</h2>
-        <FloralDivider />
+        
 
         <div className="mt-6 mb-8">
           <p className="font-script text-4xl text-brown leading-tight">

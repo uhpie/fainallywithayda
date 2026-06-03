@@ -81,6 +81,17 @@
 
 .arabic { direction: rtl; font-family: 'Amiri', serif; }
 
+/* Transparent sections when background image is active */
+.has-bg section,
+.has-bg footer,
+.has-bg .bg-cream,
+.has-bg .bg-cream-pink,
+.has-bg .bg-matcha-pale,
+.has-bg .bg-cream-warm,
+.has-bg .ivory {
+  background-color: transparent !important;
+}
+
 /* Tab switch fade */
 @keyframes tabFadeIn {
   from { opacity: 0; transform: translateY(6px); }

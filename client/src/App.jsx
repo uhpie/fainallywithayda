@@ -9,7 +9,7 @@ import Gallery from './components/Gallery'
 import Location from './components/Location'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import Overlay from './components/Overlay'
+import { config } from './config'
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 
@@ -136,16 +136,29 @@ export default function App() {
       style={{
         height: '100dvh',
         overflow: 'hidden',
-        backgroundImage: 'radial-gradient(circle, #BDD4AD33 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-        backgroundColor: '#EEF5E8',
+        backgroundColor: config.background.desktopColor,
       }}
     >
       <div
-        className="w-full max-w-phone bg-cream shadow-phone flex flex-col relative"
-        style={{ height: '100dvh', overflowY: opened ? 'hidden' : 'auto' }}
+        className={`w-full max-w-phone shadow-phone flex flex-col relative${config.background.image ? ' has-bg' : ''}`}
+        style={{
+          height: '100dvh',
+          overflowY: opened ? 'hidden' : 'auto',
+          backgroundColor: config.background.pageColor,
+          ...(config.background.image && {
+            backgroundImage: `url(${config.background.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }),
+        }}
       >
-        <Overlay />
+        {config.background.overlay && (
+          <img
+            src={config.background.overlay}
+            alt=""
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'fill', pointerEvents: 'none', zIndex: 5, mixBlendMode: 'multiply' }}
+          />
+        )}
         {!opened ? (
           /* Cover fills full height */
           <Cover onOpen={() => { setOpened(true); setTab('home') }} />

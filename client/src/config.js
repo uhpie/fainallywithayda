@@ -4,6 +4,19 @@
 // =====================================================
 
 export const config = {
+  // ── Background ─────────────────────────────────────────────────────────────
+  // pageColor    : warna background phone frame
+  // desktopColor : warna latar belakang desktop (di sekeliling phone)
+  // image        : letak '/bg.jpg' untuk background gambar, null untuk tiada
+  // overlay      : letak '/overlay.png' untuk overlay PNG, null untuk tiada
+  background: {
+    pageColor: null,
+    desktopColor: null,
+    image: 'bg.jpg',
+    overlay: 'overlay.png',
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+
   groom: {
     name: 'Faizul',
     fullName: 'Faizul Humam bin Mukminin',

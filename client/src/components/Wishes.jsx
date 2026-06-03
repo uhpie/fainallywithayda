@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import useInView from '../hooks/useInView'
-import { FloralDivider } from './FloralDecor'
 
 const INIT = { name: '', message: '' }
 
@@ -46,7 +45,7 @@ export default function Wishes() {
         <div className="text-center">
           <p className="section-eyebrow">Buku Tetamu</p>
           <h2 className="section-title">Ucapan &amp; Doa</h2>
-          <FloralDivider />
+          
           <p className="font-serif italic text-black-mid/60 text-xs mb-6">
             Tinggalkan ucapan dan doa untuk pengantin
           </p>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { config } from '../config'
-import { FloralTop, FloralBottom } from './FloralDecor'
 
 
 export default function Cover({ onOpen }) {
@@ -25,7 +24,7 @@ export default function Cover({ onOpen }) {
         className={`relative z-10 transition-all duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginBottom: '-20px' }}
       >
-        <FloralTop />
+        
       </div>
 
       {/* ── Main content ── */}
@@ -97,7 +96,7 @@ export default function Cover({ onOpen }) {
         className={`relative z-10 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginTop: '-16px' }}
       >
-        <FloralBottom />
+        
       </div>
     </div>
   )

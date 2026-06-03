@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import useInView from '../hooks/useInView'
-import { FloralDivider } from './FloralDecor'
 import { config } from '../config'
 
 export default function Gallery() {
@@ -68,7 +67,7 @@ export default function Gallery() {
         <div className="text-center">
           <p className="section-eyebrow">Kenangan</p>
           <h2 className="section-title">Galeri Foto</h2>
-          <FloralDivider />
+          
         </div>
 
         {/* ── LOCKED state — sebelum hari event ── */}

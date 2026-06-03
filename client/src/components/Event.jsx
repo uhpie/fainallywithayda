@@ -1,6 +1,5 @@
 import useInView from '../hooks/useInView'
 import { config } from '../config'
-import { FloralDivider } from './FloralDecor'
 
 const SCHEDULE = [
   { time: '11:00 Pagi', label: 'Ketibaan Tetamu' },
@@ -68,7 +67,7 @@ export default function Event() {
         <div className="text-center">
           <p className="section-eyebrow">Aturcara</p>
           <h2 className="section-title">Aturcara  Majlis</h2>
-          <FloralDivider />
+          
         </div>
 
         {/* Event card */}

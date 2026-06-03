@@ -1,6 +1,5 @@
 import useInView from '../hooks/useInView'
 import { config } from '../config'
-import { FloralDivider } from './FloralDecor'
 
 export default function Location() {
   const [ref, visible] = useInView()
@@ -12,7 +11,7 @@ export default function Location() {
         <div className="text-center">
           <p className="section-eyebrow">Lokasi</p>
           <h2 className="section-title">Tempat Majlis</h2>
-          <FloralDivider />
+          
         </div>
 
         <div className="text-center mt-4 mb-6">

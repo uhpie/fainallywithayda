@@ -1,6 +1,5 @@
 import useInView from '../hooks/useInView'
 import { config } from '../config'
-import { FloralTop, FloralBottom, FloralDivider } from './FloralDecor'
 
 export default function Opening() {
   const [ref, visible] = useInView()
@@ -16,9 +15,9 @@ export default function Opening() {
 
       {/* ── Cover hero (sama macam Cover.jsx tapi tanpa butang) ── */}
       <div className="bg-cream text-center">
-        <FloralTop />
 
-        <div className="px-8 pb-10" style={{ marginTop: '10px' }}>
+
+        <div className="px-8 pb-10" style={{ marginTop: '30px' }}>
           <p className="arabic text-3xl text-matcha leading-loose mb-5">
             بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
           </p>
@@ -53,7 +52,7 @@ export default function Opening() {
           </p>
         </div>
 
-        <FloralBottom />
+
       </div>
 
       {/* ── Teks jemputan ── */}
@@ -67,7 +66,7 @@ export default function Opening() {
         <p className="font-serif text-brown-mid text-base mb-1">&amp;</p>
         <p className="font-serif text-xl text-brown uppercase tracking-wide mb-0">Norzalelawati binti Sakiban</p>
 
-        <FloralDivider />
+
 
         <p className="font-serif text-sm text-brown-mid leading-relaxed mt-4 mb-6">
           Dengan penuh rasa syukur ke hadrat Allah SWT serta senantiasa berselawat ke atas
@@ -91,7 +90,7 @@ export default function Opening() {
           </p>
         </div>
 
-        <FloralDivider />
+
 
         <p className="font-serif italic text-black-mid/60 text-sm mt-4 leading-relaxed">
           Semoga kehadiran Tuan/Puan dapat menyeri dan memeriahkan majlis bahagia kami.
