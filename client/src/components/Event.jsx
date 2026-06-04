@@ -62,7 +62,7 @@ export default function Event() {
   const fullTitle = `Walimatul Urus — ${groom.name} & ${bride.name}`
 
   return (
-    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream-pink`}>
+    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
         <div className="text-center">
           <p className="section-eyebrow">Aturcara</p>
@@ -71,26 +71,26 @@ export default function Event() {
         </div>
 
         {/* Event card */}
-        <div className="border border-pink/20 bg-cream overflow-hidden mt-6">
+        <div className="border border-pink-pale bg-cream overflow-hidden mt-6">
           <div className="h-1 bg-pink" />
           <div className="p-5">
 
             {/* Date + venue */}
             <div className="flex items-start gap-4 mb-5">
-              <div className="flex-shrink-0 text-center border border-pink/20 bg-pink-pale/50 px-3 py-2.5 min-w-[58px]">
+              <div className="flex-shrink-0 text-center border border-pink-pale bg-pink-pale px-3 py-2.5 min-w-[58px]">
                 <p className="font-serif text-2xl text-brown font-light leading-none">{date.getDate()}</p>
                 <p className="font-sans text-[8px] tracking-widest uppercase text-pink mt-0.5">
                   {date.toLocaleDateString('ms-MY', { month: 'short' })}
                 </p>
-                <p className="font-sans text-[8px] text-brown-mid/50">{date.getFullYear()}</p>
+                <p className="font-sans text-[8px] text-brown-mid">{date.getFullYear()}</p>
               </div>
               <div>
                 <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-pink mb-1">Majlis Resepsi</p>
                 <h3 className="font-serif text-lg text-brown mb-0.5">Walimatul Urus</h3>
                 {reception.hijri && (
-                  <p className="arabic text-xs text-matcha/80 mb-0.5">{reception.hijri}</p>
+                  <p className="arabic text-xs text-matcha mb-0.5">{reception.hijri}</p>
                 )}
-                <p className="font-sans text-[10px] tracking-wider text-brown-mid/60 uppercase">{reception.dayName}</p>
+                <p className="font-sans text-[10px] tracking-wider text-brown-mid uppercase">{reception.dayName}</p>
               </div>
             </div>
 
@@ -102,12 +102,12 @@ export default function Event() {
               </svg>
               <div>
                 <p className="font-serif text-sm text-brown">{reception.venue}</p>
-                <p className="font-serif text-xs text-brown-mid/60">{reception.address}</p>
+                <p className="font-serif text-xs text-brown-mid">{reception.address}</p>
               </div>
             </div>
 
             {/* Timeline */}
-            <div className="border-t border-pink/10 pt-4 mb-5">
+            <div className="border-t border-pink-pale pt-4 mb-5">
               <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-matcha-deep mb-3">Aturcara</p>
               <div className="space-y-0">
                 {SCHEDULE.map((item, i) => (
@@ -116,7 +116,7 @@ export default function Event() {
                     <div className="flex flex-col items-center w-4 flex-shrink-0">
                       <div className="w-2.5 h-2.5 rounded-full border-2 border-pink bg-cream flex-shrink-0 mt-1" />
                       {i < SCHEDULE.length - 1 && (
-                        <div className="w-px flex-1 bg-pink/20 my-0.5" />
+                        <div className="w-px flex-1 bg-pink-pale my-0.5" />
                       )}
                     </div>
                     {/* Content */}
@@ -133,14 +133,14 @@ export default function Event() {
             <div className="flex gap-2">
               <button
                 onClick={() => addToGoogle(reception, fullTitle)}
-                className="flex-1 flex items-center justify-center gap-2 border border-matcha/40 text-matcha-deep font-sans text-[10px] tracking-wider uppercase py-2.5 hover:bg-matcha hover:text-cream transition-all duration-300"
+                className="flex-1 flex items-center justify-center gap-2 border border-matcha-light text-matcha-deep font-sans text-[10px] tracking-wider uppercase py-2.5 hover:bg-matcha hover:text-cream transition-all duration-300"
               >
                 <GoogleCalIcon />
                 Google Calendar
               </button>
               <button
                 onClick={() => downloadICS(reception, fullTitle)}
-                className="flex-1 flex items-center justify-center gap-2 border border-pink/40 text-pink font-sans text-[15px] tracking-wider py-2.5 hover:bg-pink hover:text-cream transition-all duration-300"
+                className="flex-1 flex items-center justify-center gap-2 border border-pink-light text-pink font-sans text-[15px] tracking-wider py-2.5 hover:bg-pink hover:text-cream transition-all duration-300"
               >
                 <AppleCalIcon />
                 iCal

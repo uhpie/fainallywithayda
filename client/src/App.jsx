@@ -110,7 +110,7 @@ function TabContent({ tab }) {
   switch (tab) {
     case 'home':     return <><Opening /><Footer /></>
     case 'event':    return <><Event /><Countdown /></>
-    case 'rsvp':     return <><RSVP /><Wishes /></>
+    case 'rsvp':     return <><RSVP /></>
     case 'gallery':  return <Gallery />
     case 'location': return <Location />
     case 'contact':  return <Contact />
@@ -152,18 +152,20 @@ export default function App() {
           }),
         }}
       >
-        {config.background.overlay && (
-          <img
-            src={config.background.overlay}
-            alt=""
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'fill', pointerEvents: 'none', zIndex: 5, mixBlendMode: 'multiply' }}
-          />
-        )}
         {!opened ? (
-          /* Cover fills full height */
+          /* Cover fills full height — overlay khas Cover diurus oleh CoverBackground */
           <Cover onOpen={() => { setOpened(true); setTab('home') }} />
         ) : (
           <>
+            {/* Overlay — multiply blend: kawasan putih hilang, bunga kelihatan di tepi */}
+            {config.background.overlay && (
+              <img
+                src={config.background.overlay}
+                alt=""
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'fill', pointerEvents: 'none', zIndex: 5, mixBlendMode: 'multiply' }}
+              />
+            )}
+
             {/* Scrollable content */}
             <div
               ref={contentRef}

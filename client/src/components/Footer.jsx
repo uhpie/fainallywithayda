@@ -1,44 +1,158 @@
-import { config } from '../config'
+import { useState, useEffect, useRef } from 'react'
+import useInView from '../hooks/useInView'
+import { supabase } from '../supabase'
+
+const avatarColors = [
+  'bg-pink-pale border-pink-light text-pink',
+  'bg-matcha-pale border-matcha-light text-matcha-deep',
+  'bg-cream border-pink-light/60 text-brown',
+]
 
 export default function Footer() {
-  const { groom, bride, reception } = config
-  const date = new Date(reception.date)
+  const [ref, visible] = useInView()
+  const [wishes, setWishes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [index, setIndex] = useState(0)
+  const [fade, setFade] = useState(true)
+  const timerRef = useRef(null)
+
+  async function fetchWishes() {
+    setLoading(true)
+    const { data, error } = await supabase
+      .from('wishes')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (!error && data) {
+      setWishes(data)
+      setIndex(0)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchWishes()
+    window.addEventListener('wish-added', fetchWishes)
+    return () => window.removeEventListener('wish-added', fetchWishes)
+  }, [])
+
+  // Auto-advance slideshow
+  useEffect(() => {
+    if (wishes.length < 2) return
+
+    timerRef.current = setInterval(() => {
+      // Fade out
+      setFade(false)
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % wishes.length)
+        // Fade in
+        setFade(true)
+      }, 400)
+    }, 3500)
+
+    return () => clearInterval(timerRef.current)
+  }, [wishes])
+
+  const w = wishes[index]
+  const colorClass = avatarColors[index % avatarColors.length]
 
   return (
-    <footer className="bg-cream-pink text-center">
-      {/* Floral top */}
-      <div style={{ transform: 'scaleY(-1)', marginBottom: '-8px' }}>
-        
-      </div>
+    <footer ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
+      <div className="section-inner">
 
-      <div className="px-8 pb-14 pt-4">
-        {/* Arabic closing */}
-        <p className="arabic text-2xl text-matcha leading-loose mb-2">جَزَاكُمُ اللَّهُ خَيْرًا</p>
-        <p className="font-serif italic text-black-mid/50 text-sm mb-8">Semoga Allah membalas kebaikan kalian</p>
+        {/* ── Header ── */}
+        <div className="text-center mb-6">
+          <p className="section-eyebrow">Buku Tetamu</p>
+          <h2 className="section-title">Ucapan &amp; Doa</h2>
+          <p className="font-serif italic text-black-mid/50 text-xs">
+            Ucapan daripada tetamu yang dikasihi
+          </p>
+        </div>
 
-        {/* Divider */}
+        {/* ── Divider ── */}
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-px w-14 bg-pink-light/60" />
-          <svg className="w-3 h-3 text-pink/50 rotate-45" viewBox="0 0 10 10" fill="currentColor"><rect width="10" height="10" /></svg>
+          <svg className="w-3 h-3 text-pink/50 rotate-45" viewBox="0 0 10 10" fill="currentColor">
+            <rect width="10" height="10" />
+          </svg>
           <div className="h-px w-14 bg-pink-light/60" />
         </div>
 
-        <p className="font-script text-4xl text-brown mb-1">
-          {bride.name} &amp; {groom.name}
-        </p>
-        <p className="font-sans text-[15px] tracking-[0.2em] text-matcha-deep uppercase">
-          {date.toLocaleDateString('ms-MY', { day: 'numeric', month: 'long', year: 'numeric' })}
-        </p>
+        {/* ── Wish Slideshow ── */}
+        {loading ? (
+          <p className="text-center font-serif italic text-black-mid/40 text-sm py-8">
+            Memuatkan ucapan...
+          </p>
+        ) : wishes.length > 0 ? (
+          <div className="relative z-[10] min-h-[140px] flex items-center justify-center">
+            <div
+              style={{
+                transition: 'opacity 0.4s ease, transform 0.4s ease',
+                opacity: fade ? 1 : 0,
+                transform: fade ? 'translateY(0)' : 'translateY(8px)',
+              }}
+              className="w-full border p-5 bg-cream"
+            >
+              {/* Quote mark */}
+              <p className="font-serif text-pink-light text-5xl leading-none mb-1 select-none">"</p>
 
-        <div className="flex items-center justify-center gap-3 mt-6 mb-4">
+              {/* Message */}
+              <p className="font-serif italic text-brown-mid text-sm leading-relaxed mb-4 -mt-2">
+                {w.message}
+              </p>
+
+              {/* Sender */}
+              <div className="flex items-center gap-2.5">
+                <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${colorClass}`}>
+                  <span className="font-serif text-sm font-semibold">
+                    {w.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-sans text-[11px] font-semibold text-brown tracking-wide leading-none">
+                    {w.name}
+                  </p>
+                  <p className="font-sans text-[9px] text-brown-mid mt-0.5">
+                    {new Date(w.created_at).toLocaleDateString('ms-MY', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Dot indicators */}
+            {wishes.length > 1 && (
+              <div className="absolute -bottom-5 left-0 right-0 flex justify-center gap-1.5">
+                {wishes.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`block rounded-full transition-all duration-300 ${
+                      i === index
+                        ? 'w-4 h-1.5 bg-pink'
+                        : 'w-1.5 h-1.5 bg-pink-light'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <p className="text-center font-serif italic text-black-mid/40 text-sm py-6">
+            Belum ada ucapan lagi.
+          </p>
+        )}
+
+        {/* ── Bottom closing ── */}
+        <div className="flex items-center justify-center gap-3 mt-12 mb-4">
           <div className="h-px w-14 bg-pink-light/60" />
-          <svg className="w-2.5 h-2.5 text-matcha/50" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="4" /></svg>
+          <svg className="w-2.5 h-2.5 text-matcha/50" viewBox="0 0 10 10" fill="currentColor">
+            <circle cx="5" cy="5" r="4" />
+          </svg>
           <div className="h-px w-14 bg-pink-light/60" />
         </div>
-
-        <p className="font-sans text-[9px] tracking-widest text-black-mid/25 uppercase">
+        <p className="font-sans text-[9px] tracking-widest text-black-mid/25 uppercase text-center pb-10">
           Terima kasih
         </p>
+
       </div>
     </footer>
   )

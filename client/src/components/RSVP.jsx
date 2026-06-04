@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import useInView from '../hooks/useInView'
+import { supabase } from '../supabase'
 
 const INIT = { name: '', phone: '', pax: '1', attendance: 'hadir', message: '' }
 
@@ -22,33 +23,52 @@ export default function RSVP() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const res = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) throw new Error()
+      const { error } = await supabase
+        .from('rsvps')
+        .insert([
+          {
+            name: form.name.trim(),
+            phone: form.phone.trim(),
+            pax: parseInt(form.pax) || 1,
+            attendance: form.attendance,
+            message: form.message.trim(),
+          }
+        ])
+        
+      if (error) throw error
+      
+      // Jika ada ucapan, simpan juga ke jadual wishes supaya keluar di Home
+      if (form.message.trim()) {
+        await supabase
+          .from('wishes')
+          .insert([{ name: form.name.trim(), message: form.message.trim() }])
+        
+        // Trigger Footer untuk refresh senarai ucapan
+        window.dispatchEvent(new Event('wish-added'))
+      }
+      
       setStatus('success')
       setForm(INIT)
-    } catch {
+    } catch (err) {
+      console.error(err)
       setStatus('error')
     }
   }
 
   return (
-    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream-pink`}>
+    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
         <div className="text-center">
           <p className="section-eyebrow">Kehadiran</p>
           <h2 className="section-title">RSVP</h2>
           
-          <p className="font-serif italic text-black-mid/60 text-md mb-6">
+          <p className="font-serif italic text-black-mid text-md mb-6">
             Sila maklumkan kehadiran anda
           </p>
         </div>
 
         {status === 'success' ? (
-          <div className="text-center py-10 border border-pink-light/50 bg-cream">
+          <div className="text-center py-10 border border-pink-light bg-cream">
             {/* Flower check */}
             <div className="w-16 h-16 rounded-full border-2 border-pink-light bg-pink-pale flex items-center justify-center mx-auto mb-4">
               <svg className="w-7 h-7 text-pink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -56,7 +76,7 @@ export default function RSVP() {
               </svg>
             </div>
             <p className="font-script text-4xl text-brown mb-2">Terima Kasih!</p>
-            <p className="font-serif text-sm text-brown-mid/70">
+            <p className="font-serif text-sm text-brown-mid">
               Kehadiran anda telah direkodkan.<br />Kami tidak sabar untuk bertemu anda!
             </p>
             <button onClick={() => setStatus('idle')} className="btn-pink mt-6">
@@ -84,11 +104,11 @@ export default function RSVP() {
                 </select>
               </div>
               <div>
-                <label className={`block font-sans text-[9px] tracking-widest uppercase mb-1.5 ${form.attendance === 'tidak' ? 'text-brown-mid/30' : 'text-matcha-deep'}`}>
+                <label className={`block font-sans text-[9px] tracking-widest uppercase mb-1.5 text-matcha-deep`}>
                   Bilangan
                 </label>
                 {form.attendance === 'tidak' ? (
-                  <div className="form-input bg-cream-pink/60 text-brown-mid/30 cursor-not-allowed select-none">
+                  <div className="form-input bg-cream-pink text-brown-mid cursor-not-allowed select-none">
                     —
                   </div>
                 ) : (

@@ -11,10 +11,10 @@ export default function Opening() {
   const year = date.getFullYear()
 
   return (
-    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`}>
+    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
 
       {/* ── Cover hero (sama macam Cover.jsx tapi tanpa butang) ── */}
-      <div className="bg-cream text-center">
+      <div className="text-center">
 
 
         <div className="px-8 pb-10" style={{ marginTop: '30px' }}>
@@ -27,23 +27,23 @@ export default function Opening() {
           </p>
 
           <div className="flex items-center gap-3 mb-5 mx-auto max-w-[200px]">
-            <div className="flex-1 h-px bg-pink/30" />
-            <svg className="w-2.5 h-2.5 text-pink/50 rotate-45" viewBox="0 0 10 10" fill="currentColor">
+            <div className="flex-1 h-px bg-pink-light" />
+            <svg className="w-2.5 h-2.5 text-pink-light rotate-45" viewBox="0 0 10 10" fill="currentColor">
               <rect width="10" height="10" />
             </svg>
-            <div className="flex-1 h-px bg-pink/30" />
+            <div className="flex-1 h-px bg-pink-light" />
           </div>
 
           <h1 className="font-script text-[62px] leading-none text-brown">{bride.name}</h1>
-          <p className="font-serif text-2xl text-matcha italic my-2">&amp;</p>
+          <p className="font-script text-5xl text-pink italic my-2 font-bold">&amp;</p>
           <h1 className="font-script text-[62px] leading-none text-brown mb-5">{groom.name}</h1>
 
           <div className="flex items-center gap-3 mb-5 mx-auto max-w-[200px]">
-            <div className="flex-1 h-px bg-pink/30" />
-            <svg className="w-2.5 h-2.5 text-matcha/50" viewBox="0 0 10 10" fill="currentColor">
+            <div className="flex-1 h-px bg-pink-light" />
+            <svg className="w-2.5 h-2.5 text-matcha-light" viewBox="0 0 10 10" fill="currentColor">
               <circle cx="5" cy="5" r="4" />
             </svg>
-            <div className="flex-1 h-px bg-pink/30" />
+            <div className="flex-1 h-px bg-pink-light" />
           </div>
 
           <p className="font-serif italic text-brown-mid text-2xl">{reception.dayName}</p>
@@ -56,7 +56,7 @@ export default function Opening() {
       </div>
 
       {/* ── Teks jemputan ── */}
-      <div className="section-inner text-center bg-cream-pink">
+      <div className="section-inner text-center">
         <p className="font-serif italic text-black-mid text-sm mb-6">
           Assalamualaikum dan Selamat Sejahtera.<br />
           Dengan nama Allah yang Maha Pengasih lagi Maha Penyayang.
@@ -92,7 +92,7 @@ export default function Opening() {
 
 
 
-        <p className="font-serif italic text-black-mid/60 text-sm mt-4 leading-relaxed">
+        <p className="font-serif italic text-black-mid text-sm mt-4 leading-relaxed">
           Semoga kehadiran Tuan/Puan dapat menyeri dan memeriahkan majlis bahagia kami.
           Kehadiran anda adalah hadiah yang amat berharga.
         </p>

@@ -4,16 +4,36 @@
 // =====================================================
 
 export const config = {
-  // ── Background ─────────────────────────────────────────────────────────────
+  // ── Background (keseluruhan app) ───────────────────────────────────────────
   // pageColor    : warna background phone frame
   // desktopColor : warna latar belakang desktop (di sekeliling phone)
-  // image        : letak '/bg.jpg' untuk background gambar, null untuk tiada
-  // overlay      : letak '/overlay.png' untuk overlay PNG, null untuk tiada
+  // image        : letak 'bg.jpg' untuk background gambar, null untuk tiada
+  // overlay      : letak 'overlay.png' untuk overlay PNG, null untuk tiada
   background: {
-    pageColor: null,
-    desktopColor: null,
-    image: 'bg.jpg',
+    pageColor: '#FFF9F2',
+    desktopColor: '#EEF5E8',
+    image: null,
     overlay: 'overlay.png',
+  },
+  // ───────────────────────────────────────────────────────────────────────────
+
+  // ── Cover Background (skrin pertama sahaja) ─────────────────────────────────
+  // image        : nama fail gambar dalam folder /public, contoh: 'cover-bg.jpg'
+  //                Letak null untuk pakai warna gradient default (tiada gambar)
+  // imageOpacity : kelegapan gambar (0.0 = telus, 1.0 = penuh). Default: 1.0
+  // gradientFrom : warna gradient atas (dipakai jika image: null)
+  // gradientTo   : warna gradient bawah (dipakai jika image: null)
+  // overlay      : warna overlay warna di atas gambar, format: 'rgba(r,g,b,opacity)'
+  //                Letak null jika tidak mahu overlay warna
+  // overlayImage : nama fail PNG overlay khas untuk Cover, contoh: 'overlay.png'
+  //                Letak null jika tidak mahu overlay gambar
+  cover: {
+    image: 'bg.jpg',             // ← gambar latar Cover (null = pakai gradient)
+    imageOpacity: 0.85,
+    gradientFrom: '#FFF9F2',
+    gradientTo: '#F5EAD7',
+    overlay: null, // ← overlay warna (null = tiada)
+    overlayImage: null, // ← overlay PNG khas Cover (null = tiada)
   },
   // ───────────────────────────────────────────────────────────────────────────
 
@@ -29,7 +49,7 @@ export const config = {
   },
 
   reception: {
-    date: '2026-06-27',
+    date: '2026-06-05',
     dayName: 'Sabtu',
     time: '11:00 Pagi – 4:00 Petang',
     venue: 'Sentosa Villa Event Venue',

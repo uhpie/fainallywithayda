@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { config } from '../config'
+import CoverBackground from './CoverBackground'
 
 
 export default function Cover({ onOpen }) {
@@ -17,23 +18,26 @@ export default function Cover({ onOpen }) {
   const year = date.getFullYear()
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-cream overflow-hidden">
+    <div className="relative min-h-screen flex flex-col overflow-hidden">
+
+      {/* ── Background layer (tukar dalam config.js → cover) ── */}
+      <CoverBackground />
 
       {/* ── Top floral ── */}
       <div
         className={`relative z-10 transition-all duration-1000 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginBottom: '-20px' }}
       >
-        
+
       </div>
 
       {/* ── Main content ── */}
       <div
-        className={`relative z-10 flex-1 flex flex-col items-center justify-center px-8 pb-6 text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        className={`relative z-10 flex-1 flex flex-col items-center justify-center px-8 pb-48 text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
       >
         {/* Bismillah */}
-        <p className="arabic text-3xl text-matcha leading-loose mb-5">
+        <p className="arabic text-3xl text-cream leading-loose mb-5">
           بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
         </p>
 
@@ -55,7 +59,7 @@ export default function Cover({ onOpen }) {
         <h1 className={`font-script text-[64px] leading-none text-brown mb-1 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}>
           {bride.name}
         </h1>
-        <p className="font-serif text-2xl text-matcha italic my-2">&amp;</p>
+        <p className="font-script text-5xl text-pink italic my-2 font-bold">&amp;</p>
         <h1 className={`font-script text-[64px] leading-none text-brown mb-5 transition-all duration-1000 delay-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
           {groom.name}
         </h1>
@@ -70,8 +74,8 @@ export default function Cover({ onOpen }) {
         </div>
 
         {/* Date */}
-        <p className="font-serif italic text-brown-mid text-2xl">{reception.dayName}</p>
-        <p className="font-sans text-[20px] tracking-[0.05em] text-matcha-deep mt-1 uppercase">
+        <p className="font-serif italic text-cream-pink text-2xl font-bold">{reception.dayName}</p>
+        <p className="font-sans text-[20px] tracking-[0.05em] text-pink mt-1 uppercase font-bold">
           {day} {month} {year}
         </p>
 
@@ -86,7 +90,7 @@ export default function Cover({ onOpen }) {
           </svg>
         </button>
 
-        <p className="mt-5 font-sans text-[9px] tracking-[0.22em] text-black-mid/30 uppercase">
+        <p className="mt-5 font-sans text-[13px] tracking-[0.22em] text-black-mid/30 uppercase font-bold">
           #fainallywithayda
         </p>
       </div>
@@ -96,7 +100,7 @@ export default function Cover({ onOpen }) {
         className={`relative z-10 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
         style={{ marginTop: '-16px' }}
       >
-        
+
       </div>
     </div>
   )

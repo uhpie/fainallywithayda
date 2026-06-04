@@ -6,7 +6,7 @@ export default function Location() {
   const { location, reception } = config
 
   return (
-    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream-pink`}>
+    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
         <div className="text-center">
           <p className="section-eyebrow">Lokasi</p>
@@ -20,7 +20,7 @@ export default function Location() {
         </div>
 
         {/* Map */}
-        <div className="border border-pink-light/60 overflow-hidden aspect-[4/3] mb-4">
+        <div className="border border-pink-light overflow-hidden aspect-[4/3] mb-4">
           <iframe
             src={location.googleMapsEmbed}
             width="100%" height="100%"

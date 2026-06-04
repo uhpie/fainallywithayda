@@ -12,16 +12,16 @@ function ContactCard({ person, label, relation = 'Putera' }) {
             <path d="M8 56 C8 40 20 32 32 32 C44 32 56 40 56 56" />
           </svg>
         </div>
-        <div className="absolute inset-0 rounded-full border border-pink/30 scale-110" />
-        <div className="absolute inset-0 rounded-full border border-matcha-light/40 scale-125" />
+        <div className="absolute inset-0 rounded-full border border-pink-light scale-110" />
+        <div className="absolute inset-0 rounded-full border border-matcha-light scale-125" />
       </div>
 
       <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-matcha mb-1">{label}</p>
       <p className="font-script text-4xl text-brown leading-tight mb-1">{person.name}</p>
-      <p className="font-sans text-[10px] tracking-wider text-brown-mid/60 uppercase mb-2">
+      <p className="font-sans text-[10px] tracking-wider text-brown-mid uppercase mb-2">
         {person.fullName}
       </p>
-      <p className="font-serif italic text-brown-mid/70 text-xs mb-5">
+      <p className="font-serif italic text-brown-mid text-xs mb-5">
         {relation} kepada<br />
         <span className="not-italic font-medium text-brown text-sm">{person.father}</span>
 
@@ -35,7 +35,7 @@ export default function Couple() {
   const { bride, groom } = config
 
   return (
-    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} bg-cream relative overflow-hidden`}>
+    <section ref={ref} className={`reveal ${visible ? 'revealed' : ''} relative overflow-hidden`} style={{ position: 'relative', zIndex: 10 }}>
       {/* Corner florals */}
       
       
