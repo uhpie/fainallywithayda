@@ -67,10 +67,10 @@ export const config = {
 
   // Senarai nombor telefon untuk dipaparkan di bahagian Hubungi Kami (Contact.jsx)
   contacts: [
-    { role: 'Ayah', name: 'Jasni bin Mahmood', phone: '+601XXXXXXXX' },
-    { role: 'Abang', name: 'Norzalelawati binti Sakiban', phone: '+601XXXXXXXX' },
-    { role: 'Abang', name: 'Nama Abang', phone: '+60XXXXXXXXX' },
-    { role: 'Adik', name: 'Nama Adik', phone: '+60XXXXXXXXX' },
+    { role: 'Ayah', name: 'Jasni', phone: '+60106639963' },
+    { role: 'Abang', name: 'Halim', phone: '+60169101077' },
+    { role: 'Abang', name: 'Hanafi', phone: '+60193469253' },
+    { role: 'Kakak', name: 'Lynn', phone: '+60137115416' },
   ],
   location: {
     // Tukar URL ini kepada lokasi sebenar
