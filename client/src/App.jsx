@@ -79,7 +79,7 @@ const TABS = [
 
 function BottomNav({ active, onChange }) {
   return (
-    <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-light/50 bg-cream/95 backdrop-blur-sm flex justify-between overflow-x-auto no-scrollbar safe-bottom">
+    <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-deep bg-pink/95 backdrop-blur-sm flex justify-between overflow-x-auto no-scrollbar safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
         const on = active === id
         return (
@@ -87,12 +87,12 @@ function BottomNav({ active, onChange }) {
             key={id}
             onClick={() => onChange(id)}
             className={`relative min-w-[56px] flex flex-col items-center pt-2.5 pb-3 gap-1 transition-colors duration-200 ${
-              on ? 'text-pink' : 'text-brown-mid/35 hover:text-brown-mid/55'
+              on ? 'text-cream' : 'text-pink-pale/60 hover:text-pink-pale'
             }`}
           >
             {/* active top line */}
             {on && (
-              <span className="absolute top-0 left-3 right-3 h-[2px] bg-pink rounded-full" />
+              <span className="absolute top-0 left-3 right-3 h-[2px] bg-cream rounded-full" />
             )}
             <Icon />
             <span className={`font-sans text-[8px] tracking-wide leading-none ${on ? 'font-semibold' : ''}`}>
