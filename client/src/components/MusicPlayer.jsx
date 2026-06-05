@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function MusicPlayer({ playing }) {
+export default function MusicPlayer({ playing, showButton = true }) {
   const [isMuted, setIsMuted] = useState(false)
   const iframeRef = useRef(null)
 
@@ -24,10 +24,10 @@ export default function MusicPlayer({ playing }) {
       <iframe
         ref={iframeRef}
         className="absolute opacity-0 pointer-events-none w-0 h-0"
-        src="https://www.youtube.com/embed/iZpZDivj6SU?enablejsapi=1&loop=1&playlist=iZpZDivj6SU"
+        src="https://www.youtube.com/embed/iZpZDivj6SU?autoplay=1&enablejsapi=1&loop=1&playlist=iZpZDivj6SU"
         allow="autoplay"
       />
-      {playing && (
+      {playing && showButton && (
         <button
           onClick={toggleMusic}
           className={`fixed bottom-[80px] right-4 z-50 w-10 h-10 rounded-full bg-cream shadow-md border border-pink flex items-center justify-center transition-all ${

@@ -123,7 +123,7 @@ function TabContent({ tab }) {
 
 export default function App() {
   const [opened, setOpened] = useState(false)
-  const [playMusic, setPlayMusic] = useState(false)
+  const [playMusic, setPlayMusic] = useState(true)
   const [tab, setTab] = useState('home')
   const contentRef = useRef(null)
 
@@ -154,7 +154,7 @@ export default function App() {
           }),
         }}
       >
-        <MusicPlayer playing={playMusic} />
+        <MusicPlayer playing={playMusic} showButton={opened} />
         {!opened ? (
           /* Cover fills full height — overlay khas Cover diurus oleh CoverBackground */
           <Cover onOpen={() => { setOpened(true); setTab('home') }} onMusicStart={() => setPlayMusic(true)} />
