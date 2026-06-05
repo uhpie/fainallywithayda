@@ -22,7 +22,7 @@ export default function Opening() {
     const scrollDown = (time) => {
       const delta = time - lastTime
       lastTime = time
-      
+
       // Berhenti scroll kalau dah sampai bawah
       if (container.scrollTop + container.clientHeight < container.scrollHeight - 1) {
         currentScroll += 35 * (delta / 1000)
@@ -127,9 +127,8 @@ export default function Opening() {
 
 
         <p className="font-serif text-sm text-brown-mid leading-relaxed mt-4 mb-6">
-          Dengan penuh rasa syukur ke hadrat Allah SWT serta senantiasa berselawat ke atas
-          junjungan besar Nabi Muhammad SAW, kami dengan segala kerendahan hati memohon
-          kehadiran Tuan/Puan/Saudara/Saudari ke majlis perkahwinan puteri kami:
+          Dengan penuh rasa kesyukuran, kami ingin menjemput Dato | Datin | Tuan | Puan | Encik | Cik
+          ke majlis perkahwinan puteri kami yang dikasihi
         </p>
 
         <div className="my-5">
@@ -139,7 +138,7 @@ export default function Opening() {
           </p>
         </div>
 
-        <p className="font-serif text-lg text-matcha italic">bersama</p>
+        <p className="font-serif text-lg text-matcha italic">dengan pilihan hatinya</p>
 
         <div className="my-5">
           <p className="font-script text-5xl text-brown leading-tight">{groom.name}</p>
@@ -151,8 +150,7 @@ export default function Opening() {
 
 
         <p className="font-serif italic text-black-mid text-sm mt-4 leading-relaxed">
-          Semoga kehadiran Tuan/Puan dapat menyeri dan memeriahkan majlis bahagia kami.
-          Kehadiran anda adalah hadiah yang amat berharga.
+          Semoga dengan kehadiran Tuan/Puan dapat menyerikan lagi majlis kami.
         </p>
       </div>
 

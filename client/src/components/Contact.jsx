@@ -47,36 +47,24 @@ function FamilySection({ title, children }) {
 
 export default function Contact() {
   const [ref, visible] = useInView()
-  const { brideParents } = config
+  const { contacts } = config
 
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
         <div className="text-center">
-          <p className="section-eyebrow">Hubungi Kami</p>
-          <h2 className="section-title">Maklumat Perhubungan</h2>
-          
-          <p className="font-serif italic text-black-mid text-xs mb-8">
-            Sebarang pertanyaan, sila hubungi kami
-          </p>
+          <h2 className="section-title">Untuk Dihubungi</h2>
         </div>
 
-        <FamilySection title="Keluarga Pengantin Perempuan">
-          <ContactCard
-            role="Ayah"
-            name={brideParents.father.name}
-            contact={brideParents.father.contact}
-          />
-          <ContactCard
-            role="Mak"
-            name={brideParents.mother.name}
-            contact={brideParents.mother.contact}
-          />
-          <ContactCard
-            role="Abang"
-            name={brideParents.brother?.name}
-            contact={brideParents.brother?.contact}
-          />
+        <FamilySection title="Wakil Pihak Pengantin">
+          {contacts.map((contact, index) => (
+            <ContactCard
+              key={index}
+              role={contact.role}
+              name={contact.name}
+              contact={contact.phone}
+            />
+          ))}
         </FamilySection>
 
       </div>

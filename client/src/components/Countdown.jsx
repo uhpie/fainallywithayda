@@ -45,9 +45,8 @@ export default function Countdown() {
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner text-center">
-        <p className="section-eyebrow">Kiraan Hari</p>
         <h2 className="section-title">Menghitung Hari</h2>
-        
+
 
         <div className="mt-6 mb-8">
           <p className="font-script text-4xl text-brown leading-tight">
@@ -72,10 +71,7 @@ export default function Countdown() {
           </div>
         ) : (
           <div className="py-6">
-            <p className="font-script text-4xl text-pink">Hari Bahagia Telah Tiba!</p>
-            <p className="font-serif italic text-brown-mid text-sm mt-2">
-              Alhamdulillah, selamat pengantin baru 🌸
-            </p>
+            <p className="font-script text-4xl text-pink">Selamat Pengantin Baru!</p>
           </div>
         )}
       </div>
