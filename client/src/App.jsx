@@ -84,11 +84,6 @@ function BottomNav({ active, onChange }) {
     if (active === 'rsvp') setShowTooltip(false)
   }, [active])
 
-  useEffect(() => {
-    const t = setTimeout(() => setShowTooltip(false), 8000)
-    return () => clearTimeout(t)
-  }, [])
-
   return (
     <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-deep bg-pink/95 backdrop-blur-sm flex justify-between safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
@@ -170,7 +165,7 @@ export default function App() {
           backgroundColor: config.background.pageColor,
           ...(config.background.image && {
             backgroundImage: `url(${config.background.image})`,
-            backgroundSize: 'cover',
+            backgroundSize: '100% 100%',
             backgroundPosition: 'center',
           }),
         }}

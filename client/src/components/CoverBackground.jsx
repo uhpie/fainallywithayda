@@ -41,7 +41,7 @@ export default function CoverBackground() {
             position: 'absolute',
             inset: 0,
             backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
+            backgroundSize: '100% 100%',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             opacity: imageOpacity,
