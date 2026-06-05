@@ -90,7 +90,7 @@ export default function Cover({ onOpen, onMusicStart }) {
           onClick={handleOpen}
           className={`mt-8 group relative inline-flex items-center gap-2 px-10 py-4 bg-pink text-cream font-sans font-bold text-[11px] tracking-[0.26em] uppercase shadow-lg shadow-pink/30 hover:bg-pink-deep hover:-translate-y-0.5 transition-all duration-300 ${isOpening ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
         >
-          You are invited!
+          Klik untuk buka
           <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M2 6 L10 6 M7 3 L10 6 L7 9" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
