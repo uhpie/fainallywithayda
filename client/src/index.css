@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Brittany Signature';
-  src: url('/BrittanySignature.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer base {
   * { -webkit-font-smoothing: antialiased; }
   html { scroll-behavior: smooth; }
