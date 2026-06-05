@@ -49,7 +49,7 @@ export const config = {
   },
 
   reception: {
-    date: '2026-06-05',
+    date: '2026-06-27',
     dayName: 'Sabtu',
     time: '11:00 Pagi – 4:00 Petang',
     venue: 'Sentosa Villa Event Venue',

@@ -71,7 +71,7 @@ export default function Opening() {
 
           {/* Label */}
           <p className="font-sans text-[9px] tracking-[0.36em] uppercase text-pink mb-4">
-            Walimatul Urus
+            The wedding of
           </p>
 
           {/* Decorative line */}
