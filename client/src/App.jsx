@@ -78,14 +78,14 @@ const TABS = [
 
 function BottomNav({ active, onChange }) {
   return (
-    <nav className="relative z-10 flex-shrink-0 border-t border-pink-light/50 bg-cream/95 backdrop-blur-sm flex overflow-x-auto no-scrollbar safe-bottom">
+    <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-light/50 bg-cream/95 backdrop-blur-sm flex justify-between overflow-x-auto no-scrollbar safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
         const on = active === id
         return (
           <button
             key={id}
             onClick={() => onChange(id)}
-            className={`relative flex-1 min-w-[60px] flex flex-col items-center pt-2.5 pb-3 gap-1 transition-colors duration-200 ${
+            className={`relative min-w-[56px] flex flex-col items-center pt-2.5 pb-3 gap-1 transition-colors duration-200 ${
               on ? 'text-pink' : 'text-brown-mid/35 hover:text-brown-mid/55'
             }`}
           >
@@ -132,7 +132,7 @@ export default function App() {
 
   return (
     <div
-      className="flex justify-center"
+      className="flex justify-center p-3 sm:p-4"
       style={{
         height: '100dvh',
         overflow: 'hidden',
@@ -140,9 +140,9 @@ export default function App() {
       }}
     >
       <div
-        className={`w-full max-w-phone shadow-phone flex flex-col relative${config.background.image ? ' has-bg' : ''}`}
+        className={`w-full max-w-phone shadow-phone flex flex-col relative rounded-[20px] sm:rounded-[32px] overflow-hidden${config.background.image ? ' has-bg' : ''}`}
         style={{
-          height: '100dvh',
+          height: '100%',
           overflowY: opened ? 'hidden' : 'auto',
           backgroundColor: config.background.pageColor,
           ...(config.background.image && {
