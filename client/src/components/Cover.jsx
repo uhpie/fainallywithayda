@@ -5,11 +5,19 @@ import CoverBackground from './CoverBackground'
 
 export default function Cover({ onOpen }) {
   const [visible, setVisible] = useState(false)
+  const [isOpening, setIsOpening] = useState(false)
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 150)
     return () => clearTimeout(t)
   }, [])
+
+  const handleOpen = () => {
+    setIsOpening(true)
+    setTimeout(() => {
+      onOpen()
+    }, 1500)
+  }
 
   const { groom, bride, reception } = config
   const date = new Date(reception.date)
@@ -17,9 +25,8 @@ export default function Cover({ onOpen }) {
   const month = date.toLocaleDateString('ms-MY', { month: 'long' })
   const year = date.getFullYear()
 
-  return (
-    <div className="relative min-h-screen flex flex-col overflow-hidden">
-
+  const Content = (
+    <div className="relative h-full flex flex-col overflow-hidden w-full bg-cream">
       {/* ── Background layer (tukar dalam config.js → cover) ── */}
       <CoverBackground />
 
@@ -81,8 +88,8 @@ export default function Cover({ onOpen }) {
 
         {/* CTA */}
         <button
-          onClick={onOpen}
-          className="mt-8 group relative inline-flex items-center gap-2 px-10 py-3.5 border border-pink/70 text-pink font-sans text-[10px] tracking-[0.26em] uppercase hover:bg-pink hover:text-cream hover:border-pink transition-all duration-300"
+          onClick={handleOpen}
+          className={`mt-8 group relative inline-flex items-center gap-2 px-10 py-3.5 border border-pink/70 text-pink font-sans text-[10px] tracking-[0.26em] uppercase hover:bg-pink hover:text-cream hover:border-pink transition-all duration-300 ${isOpening ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
         >
           Buka Jemputan
           <svg className="w-3 h-3 transition-transform group-hover:translate-x-1" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -94,13 +101,35 @@ export default function Cover({ onOpen }) {
           #fainallywithayda
         </p>
       </div>
+    </div>
+  )
 
-      {/* ── Bottom floral ── */}
-      <div
-        className={`relative z-10 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}
-        style={{ marginTop: '-16px' }}
+  return (
+    <div className="absolute inset-0 z-50 flex overflow-hidden pointer-events-none">
+      {/* Left door */}
+      <div 
+        className="relative w-1/2 h-full overflow-hidden pointer-events-auto"
+        style={{
+          transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
+          transform: isOpening ? 'translateX(-100%)' : 'translateX(0)',
+        }}
       >
-
+        <div className="absolute top-0 left-0 h-full w-[200%]">
+          {Content}
+        </div>
+      </div>
+      
+      {/* Right door */}
+      <div 
+        className="relative w-1/2 h-full overflow-hidden pointer-events-auto"
+        style={{
+          transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
+          transform: isOpening ? 'translateX(100%)' : 'translateX(0)',
+        }}
+      >
+        <div className="absolute top-0 right-0 h-full w-[200%]">
+          {Content}
+        </div>
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ import Gallery from './components/Gallery'
 import Location from './components/Location'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import MusicPlayer from './components/MusicPlayer'
 import { config } from './config'
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
@@ -122,6 +123,7 @@ function TabContent({ tab }) {
 
 export default function App() {
   const [opened, setOpened] = useState(false)
+  const [playMusic, setPlayMusic] = useState(false)
   const [tab, setTab] = useState('home')
   const contentRef = useRef(null)
 
@@ -154,9 +156,10 @@ export default function App() {
       >
         {!opened ? (
           /* Cover fills full height — overlay khas Cover diurus oleh CoverBackground */
-          <Cover onOpen={() => { setOpened(true); setTab('home') }} />
+          <Cover onOpen={() => { setOpened(true); setTab('home'); setPlayMusic(true) }} />
         ) : (
           <>
+            <MusicPlayer playing={playMusic} />
             {/* Overlay — multiply blend: kawasan putih hilang, bunga kelihatan di tepi */}
             {config.background.overlay && (
               <img
