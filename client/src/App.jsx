@@ -154,12 +154,12 @@ export default function App() {
           }),
         }}
       >
+        <MusicPlayer playing={playMusic} />
         {!opened ? (
           /* Cover fills full height — overlay khas Cover diurus oleh CoverBackground */
-          <Cover onOpen={() => { setOpened(true); setTab('home'); setPlayMusic(true) }} />
+          <Cover onOpen={() => { setOpened(true); setTab('home') }} onMusicStart={() => setPlayMusic(true)} />
         ) : (
           <>
-            <MusicPlayer playing={playMusic} />
             {/* Overlay — multiply blend: kawasan putih hilang, bunga kelihatan di tepi */}
             {config.background.overlay && (
               <img

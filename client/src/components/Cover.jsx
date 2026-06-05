@@ -3,7 +3,7 @@ import { config } from '../config'
 import CoverBackground from './CoverBackground'
 
 
-export default function Cover({ onOpen }) {
+export default function Cover({ onOpen, onMusicStart }) {
   const [visible, setVisible] = useState(false)
   const [isOpening, setIsOpening] = useState(false)
 
@@ -13,6 +13,7 @@ export default function Cover({ onOpen }) {
   }, [])
 
   const handleOpen = () => {
+    if (onMusicStart) onMusicStart()
     setIsOpening(true)
     setTimeout(() => {
       onOpen()

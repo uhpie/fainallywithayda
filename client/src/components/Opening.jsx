@@ -21,6 +21,7 @@ export default function Opening() {
     let lastTime = performance.now()
     let isPaused = false
     let resumeTimeout
+    let currentScroll = container.scrollTop
 
     const scrollDown = (time) => {
       if (isPaused) {
@@ -34,7 +35,8 @@ export default function Opening() {
       
       // Berhenti scroll kalau dah sampai bawah
       if (container.scrollTop + container.clientHeight < container.scrollHeight - 1) {
-        container.scrollTop += 15 * (delta / 1000)
+        currentScroll += 15 * (delta / 1000)
+        container.scrollTop = currentScroll
       }
       animationId = requestAnimationFrame(scrollDown)
     }
@@ -47,6 +49,7 @@ export default function Opening() {
     // Pause scroll bila user sentuh, dan set timer 3 saat untuk sambung
     const handleInteraction = () => {
       isPaused = true
+      currentScroll = container.scrollTop // Sync scroll position
       clearTimeout(resumeTimeout)
       resumeTimeout = setTimeout(() => {
         isPaused = false
