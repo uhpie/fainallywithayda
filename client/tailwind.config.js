@@ -21,7 +21,7 @@ export default {
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['"Montserrat"', 'system-ui', 'sans-serif'],
-        script: ['"Armelie"', 'cursive'],
+        script: ['"Brittany Signature"', 'cursive'],
         arabic: ['"Amiri"', 'serif'],
       },
       maxWidth: { phone: '430px' },

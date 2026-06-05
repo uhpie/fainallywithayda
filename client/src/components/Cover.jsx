@@ -33,11 +33,11 @@ export default function Cover({ onOpen }) {
 
       {/* ── Main content ── */}
       <div
-        className={`relative z-10 flex-1 flex flex-col items-center justify-center px-8 pb-48 text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        className={`relative z-10 flex-1 flex flex-col items-center justify-start px-8 pt-[12vh] text-center transition-all duration-1000 delay-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
       >
         {/* Bismillah */}
-        <p className="arabic text-3xl text-cream leading-loose mb-5">
+        <p className="arabic text-3xl text-cream leading-loose mb-3">
           بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
         </p>
 
@@ -47,7 +47,7 @@ export default function Cover({ onOpen }) {
         </p>
 
         {/* Decorative line */}
-        <div className="flex items-center gap-3 mb-5 w-full max-w-[220px]">
+        <div className="flex items-center gap-3 mb-4 w-full max-w-[220px]">
           <div className="flex-1 h-px bg-pink-light/70" />
           <svg className="w-3 h-3 text-pink/70 rotate-45" viewBox="0 0 10 10" fill="currentColor">
             <rect width="10" height="10" />
@@ -56,11 +56,11 @@ export default function Cover({ onOpen }) {
         </div>
 
         {/* Names */}
-        <h1 className={`font-script text-[64px] leading-none text-brown mb-1 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+        <h1 className={`font-script text-[56px] leading-none text-brown mb-1 transition-all duration-1000 delay-500 ${visible ? 'opacity-100' : 'opacity-0'}`}>
           {bride.name}
         </h1>
-        <p className="font-script text-5xl text-pink italic my-2 font-bold">&amp;</p>
-        <h1 className={`font-script text-[64px] leading-none text-brown mb-5 transition-all duration-1000 delay-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
+        <p className="font-script text-4xl text-pink italic my-1 font-bold">&amp;</p>
+        <h1 className={`font-script text-[56px] leading-none text-brown mb-4 transition-all duration-1000 delay-700 ${visible ? 'opacity-100' : 'opacity-0'}`}>
           {groom.name}
         </h1>
 
@@ -82,7 +82,7 @@ export default function Cover({ onOpen }) {
         {/* CTA */}
         <button
           onClick={onOpen}
-          className="mt-10 group relative inline-flex items-center gap-2 px-10 py-3.5 border border-pink/70 text-pink font-sans text-[10px] tracking-[0.26em] uppercase hover:bg-pink hover:text-cream hover:border-pink transition-all duration-300"
+          className="mt-8 group relative inline-flex items-center gap-2 px-10 py-3.5 border border-pink/70 text-pink font-sans text-[10px] tracking-[0.26em] uppercase hover:bg-pink hover:text-cream hover:border-pink transition-all duration-300"
         >
           Buka Jemputan
           <svg className="w-3 h-3 transition-transform group-hover:translate-x-1" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">

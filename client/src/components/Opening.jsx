@@ -34,9 +34,9 @@ export default function Opening() {
             <div className="flex-1 h-px bg-pink-light" />
           </div>
 
-          <h1 className="font-script text-[62px] leading-none text-brown">{bride.name}</h1>
-          <p className="font-script text-5xl text-pink italic my-2 font-bold">&amp;</p>
-          <h1 className="font-script text-[62px] leading-none text-brown mb-5">{groom.name}</h1>
+          <h1 className="font-script text-[56px] leading-none text-brown">{bride.name}</h1>
+          <p className="font-script text-[36px] text-pink italic my-1">&amp;</p>
+          <h1 className="font-script text-[56px] leading-none text-brown">{groom.name}</h1>
 
           <div className="flex items-center gap-3 mb-5 mx-auto max-w-[200px]">
             <div className="flex-1 h-px bg-pink-light" />
