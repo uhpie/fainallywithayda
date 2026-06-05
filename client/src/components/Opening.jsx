@@ -8,9 +8,7 @@ export default function Opening() {
   const { groom, bride, reception } = config
 
   const date = new Date(reception.date)
-  const day = date.getDate()
-  const month = date.toLocaleDateString('ms-MY', { month: 'long' })
-  const year = date.getFullYear()
+  const formattedDate = `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getFullYear()).slice(-2)}`
 
   // Auto-scroll slow motion
   useEffect(() => {
@@ -105,8 +103,8 @@ export default function Opening() {
 
           {/* Date */}
           <p className="font-serif italic text-cream-pink text-2xl font-bold">{reception.dayName}</p>
-          <p className="font-sans text-[20px] tracking-[0.05em] text-pink mt-1 uppercase font-bold">
-            {day} {month} {year}
+          <p className="font-sans text-[20px] tracking-[0.3em] text-pink mt-1 uppercase font-bold">
+            {formattedDate}
           </p>
 
           <p className="mt-8 font-sans text-[13px] tracking-[0.22em] text-black-mid/30 uppercase font-bold">
