@@ -64,12 +64,13 @@ export const config = {
     father: 'Mukminin bin Sumani',
     mother: 'Nama Ibu Pengantin Lelaki',
   },
-  
+
   // Senarai nombor telefon untuk dipaparkan di bahagian Hubungi Kami (Contact.jsx)
   contacts: [
     { role: 'Ayah', name: 'Jasni bin Mahmood', phone: '+601XXXXXXXX' },
-    { role: 'Mak', name: 'Norzalelawati binti Sakiban', phone: '+601XXXXXXXX' },
+    { role: 'Abang', name: 'Norzalelawati binti Sakiban', phone: '+601XXXXXXXX' },
     { role: 'Abang', name: 'Nama Abang', phone: '+60XXXXXXXXX' },
+    { role: 'Adik', name: 'Nama Adik', phone: '+60XXXXXXXXX' },
   ],
   location: {
     // Tukar URL ini kepada lokasi sebenar

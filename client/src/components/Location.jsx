@@ -9,9 +9,8 @@ export default function Location() {
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
         <div className="text-center">
-          <p className="section-eyebrow">Lokasi</p>
-          <h2 className="section-title">Tempat Majlis</h2>
-          
+          <h2 className="section-title">Lokasi Majlis</h2>
+
         </div>
 
         <div className="text-center mt-4 mb-6">

@@ -164,7 +164,7 @@ export default function Gallery() {
       <div className="section-inner">
         <div className="text-center mb-12">
           <p className="section-eyebrow">Kenangan</p>
-          <h2 className="section-title">Galeri Foto</h2>
+          <h2 className="section-title">Galeri</h2>
         </div>
 
         {/* ── LOCKED state — sebelum hari event ── */}
