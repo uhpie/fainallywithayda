@@ -21,14 +21,12 @@ export default function MusicPlayer({ playing }) {
 
   return (
     <>
-      {playing && (
-        <iframe
-          ref={iframeRef}
-          className="hidden"
-          src="https://www.youtube.com/embed/iZpZDivj6SU?autoplay=1&enablejsapi=1&loop=1&playlist=iZpZDivj6SU"
-          allow="autoplay"
-        />
-      )}
+      <iframe
+        ref={iframeRef}
+        className="absolute opacity-0 pointer-events-none w-0 h-0"
+        src="https://www.youtube.com/embed/iZpZDivj6SU?enablejsapi=1&loop=1&playlist=iZpZDivj6SU"
+        allow="autoplay"
+      />
       {playing && (
         <button
           onClick={toggleMusic}

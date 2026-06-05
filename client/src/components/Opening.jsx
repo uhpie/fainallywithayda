@@ -19,23 +19,15 @@ export default function Opening() {
 
     let animationId
     let lastTime = performance.now()
-    let isPaused = false
-    let resumeTimeout
     let currentScroll = container.scrollTop
 
     const scrollDown = (time) => {
-      if (isPaused) {
-        lastTime = time
-        animationId = requestAnimationFrame(scrollDown)
-        return
-      }
-
       const delta = time - lastTime
       lastTime = time
       
       // Berhenti scroll kalau dah sampai bawah
       if (container.scrollTop + container.clientHeight < container.scrollHeight - 1) {
-        currentScroll += 15 * (delta / 1000)
+        currentScroll += 35 * (delta / 1000)
         container.scrollTop = currentScroll
       }
       animationId = requestAnimationFrame(scrollDown)
@@ -46,15 +38,9 @@ export default function Opening() {
       animationId = requestAnimationFrame(scrollDown)
     }, 2000) // Mula auto-scroll lepas 2 saat
 
-    // Pause scroll bila user sentuh, dan set timer 3 saat untuk sambung
+    // Berhenti sepenuhnya bila user sentuh skrin
     const handleInteraction = () => {
-      isPaused = true
-      currentScroll = container.scrollTop // Sync scroll position
-      clearTimeout(resumeTimeout)
-      resumeTimeout = setTimeout(() => {
-        isPaused = false
-        lastTime = performance.now()
-      }, 3000)
+      cancelAnimationFrame(animationId)
     }
 
     container.addEventListener('touchstart', handleInteraction, { passive: true })
@@ -64,7 +50,6 @@ export default function Opening() {
 
     return () => {
       clearTimeout(t)
-      clearTimeout(resumeTimeout)
       cancelAnimationFrame(animationId)
       container.removeEventListener('touchstart', handleInteraction)
       container.removeEventListener('touchmove', handleInteraction)

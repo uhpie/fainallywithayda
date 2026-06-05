@@ -106,30 +106,38 @@ export default function Cover({ onOpen, onMusicStart }) {
   )
 
   return (
-    <div className="absolute inset-0 z-50 flex overflow-hidden pointer-events-none">
-      {/* Left door */}
-      <div 
-        className="relative w-1/2 h-full overflow-hidden pointer-events-auto"
-        style={{
-          transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
-          transform: isOpening ? 'translateX(-100%)' : 'translateX(0)',
-        }}
-      >
-        <div className="absolute top-0 left-0 h-full w-[200%]">
-          {Content}
-        </div>
+    <div className="absolute inset-0 z-50">
+      {/* ── Original unified content (handles interactions before opening) ── */}
+      <div className={`absolute inset-0 z-40 transition-opacity duration-0 ${isOpening ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}>
+        {Content}
       </div>
-      
-      {/* Right door */}
-      <div 
-        className="relative w-1/2 h-full overflow-hidden pointer-events-auto"
-        style={{
-          transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
-          transform: isOpening ? 'translateX(100%)' : 'translateX(0)',
-        }}
-      >
-        <div className="absolute top-0 right-0 h-full w-[200%]">
-          {Content}
+
+      {/* ── Split Doors (only visible during animation) ── */}
+      <div className={`absolute inset-0 z-50 flex overflow-hidden pointer-events-none transition-opacity duration-0 ${isOpening ? 'opacity-100' : 'opacity-0'}`}>
+        {/* Left door */}
+        <div 
+          className="relative w-1/2 h-full overflow-hidden"
+          style={{
+            transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
+            transform: isOpening ? 'translateX(-100%)' : 'translateX(0)',
+          }}
+        >
+          <div className="absolute top-0 left-0 h-full w-[200%]">
+            {Content}
+          </div>
+        </div>
+        
+        {/* Right door */}
+        <div 
+          className="relative w-1/2 h-full overflow-hidden"
+          style={{
+            transition: 'transform 1.5s cubic-bezier(0.7, 0, 0.3, 1)',
+            transform: isOpening ? 'translateX(100%)' : 'translateX(0)',
+          }}
+        >
+          <div className="absolute top-0 right-0 h-full w-[200%]">
+            {Content}
+          </div>
         </div>
       </div>
 
