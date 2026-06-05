@@ -52,7 +52,7 @@ export default function Contact() {
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
       <div className="section-inner">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <h2 className="section-title">Untuk Dihubungi</h2>
         </div>
 
