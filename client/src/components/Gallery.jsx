@@ -210,7 +210,7 @@ export default function Gallery() {
                 ))}
               </div>
               <p className="font-sans text-[9px] tracking-widest text-black-mid uppercase mt-3">
-                Foto-foto akan dipaparkan di sini
+                Gambar akan dipaparkan di sini :)
               </p>
             </div>
           </div>
