@@ -90,7 +90,7 @@ function BottomNav({ active, onChange }) {
   }, [])
 
   return (
-    <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-deep bg-pink/95 backdrop-blur-sm flex justify-between overflow-x-auto no-scrollbar safe-bottom">
+    <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-deep bg-pink/95 backdrop-blur-sm flex justify-between safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
         const on = active === id
         return (
