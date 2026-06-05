@@ -81,7 +81,7 @@ export default function Footer() {
         {/* ── Wish Slideshow ── */}
         {loading ? (
           <p className="text-center font-serif italic text-black-mid/40 text-sm py-8">
-            Memuatkan ucapan...
+            Loading...
           </p>
         ) : wishes.length > 0 ? (
           <div className="relative z-[10] min-h-[140px] flex items-center justify-center">
@@ -125,11 +125,10 @@ export default function Footer() {
                 {wishes.map((_, i) => (
                   <span
                     key={i}
-                    className={`block rounded-full transition-all duration-300 ${
-                      i === index
+                    className={`block rounded-full transition-all duration-300 ${i === index
                         ? 'w-4 h-1.5 bg-pink'
                         : 'w-1.5 h-1.5 bg-pink-light'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -144,7 +143,7 @@ export default function Footer() {
         {/* ── Bottom closing ── */}
         <div className="flex items-center justify-center gap-3 mt-12 mb-4">
           <div className="h-px w-14 bg-pink-light/60" />
-          <svg className="w-2.5 h-2.5 text-matcha/50" viewBox="0 0 10 10" fill="currentColor">
+          <svg className="w-2.5 h-2.5 text-pink/50" viewBox="0 0 10 10" fill="currentColor">
             <circle cx="5" cy="5" r="4" />
           </svg>
           <div className="h-px w-14 bg-pink-light/60" />

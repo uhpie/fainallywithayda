@@ -34,19 +34,19 @@ export default function RSVP() {
             message: form.message.trim(),
           }
         ])
-        
+
       if (error) throw error
-      
+
       // Jika ada ucapan, simpan juga ke jadual wishes supaya keluar di Home
       if (form.message.trim()) {
         await supabase
           .from('wishes')
           .insert([{ name: form.name.trim(), message: form.message.trim() }])
-        
+
         // Trigger Footer untuk refresh senarai ucapan
         window.dispatchEvent(new Event('wish-added'))
       }
-      
+
       setStatus('success')
       setForm(INIT)
     } catch (err) {
@@ -61,7 +61,7 @@ export default function RSVP() {
         <div className="text-center">
           <p className="section-eyebrow">Kehadiran</p>
           <h2 className="section-title">RSVP</h2>
-          
+
           <p className="font-serif italic text-black-mid text-md mb-6">
             Sila maklumkan kehadiran anda
           </p>
@@ -77,7 +77,7 @@ export default function RSVP() {
             </div>
             <p className="font-script text-4xl text-brown mb-2">Terima Kasih!</p>
             <p className="font-serif text-sm text-brown-mid">
-              Kehadiran anda telah direkodkan.<br />Kami tidak sabar untuk bertemu anda!
+              Kehadiran anda telah direkodkan.
             </p>
             <button onClick={() => setStatus('idle')} className="btn-pink mt-6">
               Hantar Lagi
@@ -113,7 +113,7 @@ export default function RSVP() {
                   </div>
                 ) : (
                   <select value={form.pax} onChange={set('pax')} className="form-input">
-                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((n) => (
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((n) => (
                       <option key={n} value={n}>{n} orang</option>
                     ))}
                   </select>

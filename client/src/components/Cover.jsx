@@ -73,7 +73,7 @@ export default function Cover({ onOpen, onMusicStart }) {
         {/* Decorative line */}
         <div className="flex items-center gap-3 mb-5 w-full max-w-[220px]">
           <div className="flex-1 h-px bg-pink-light/70" />
-          <svg className="w-2.5 h-2.5 text-matcha/60" viewBox="0 0 10 10" fill="currentColor">
+          <svg className="w-2.5 h-2.5 text-pink/70" viewBox="0 0 10 10" fill="currentColor">
             <circle cx="5" cy="5" r="4" />
           </svg>
           <div className="flex-1 h-px bg-pink-light/70" />
