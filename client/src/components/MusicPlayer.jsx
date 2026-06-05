@@ -22,6 +22,7 @@ export default function MusicPlayer({ playing, showButton = true }) {
   return (
     <>
       <iframe
+        id="youtube-player"
         ref={iframeRef}
         className="absolute opacity-0 pointer-events-none w-0 h-0"
         src="https://www.youtube.com/embed/iZpZDivj6SU?autoplay=1&enablejsapi=1&loop=1&playlist=iZpZDivj6SU"

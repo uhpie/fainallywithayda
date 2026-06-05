@@ -123,7 +123,7 @@ function TabContent({ tab }) {
 
 export default function App() {
   const [opened, setOpened] = useState(false)
-  const [playMusic, setPlayMusic] = useState(true)
+  const [playMusic, setPlayMusic] = useState(false)
   const [tab, setTab] = useState('home')
   const contentRef = useRef(null)
 
@@ -157,7 +157,17 @@ export default function App() {
         <MusicPlayer playing={playMusic} showButton={opened} />
         {!opened ? (
           /* Cover fills full height — overlay khas Cover diurus oleh CoverBackground */
-          <Cover onOpen={() => { setOpened(true); setTab('home') }} onMusicStart={() => setPlayMusic(true)} />
+          <Cover 
+            onOpen={() => { setOpened(true); setTab('home') }} 
+            onMusicStart={() => {
+              setPlayMusic(true)
+              // Force play immediately within the click event loop to bypass mobile blocking
+              const iframe = document.getElementById('youtube-player')
+              if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*')
+              }
+            }} 
+          />
         ) : (
           <>
             {/* Overlay — multiply blend: kawasan putih hilang, bunga kelihatan di tepi */}
