@@ -131,6 +131,16 @@ export default function Cover({ onOpen }) {
           {Content}
         </div>
       </div>
+
+      {/* Magic smoke effect */}
+      {isOpening && (
+        <div 
+          className="absolute inset-0 pointer-events-none z-[60] animate-magic-smoke"
+          style={{
+            background: 'radial-gradient(circle, rgba(253, 246, 240, 0.9) 0%, rgba(253, 246, 240, 0) 70%)',
+          }}
+        />
+      )}
     </div>
   )
 }

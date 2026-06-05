@@ -171,6 +171,7 @@ export default function App() {
 
             {/* Scrollable content */}
             <div
+              id="scroll-container"
               ref={contentRef}
               key={tab}
               className="flex-1 overflow-y-auto min-h-0"

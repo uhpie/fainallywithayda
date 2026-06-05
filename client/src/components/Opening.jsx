@@ -14,7 +14,7 @@ export default function Opening() {
 
   // Auto-scroll slow motion
   useEffect(() => {
-    const container = document.querySelector('.overflow-y-auto')
+    const container = document.getElementById('scroll-container')
     if (!container) return
 
     let animationId
