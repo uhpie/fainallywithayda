@@ -19,12 +19,23 @@ export default function Opening() {
 
     let animationId
     let lastTime = performance.now()
+    let isPaused = false
+    let resumeTimeout
 
     const scrollDown = (time) => {
+      if (isPaused) {
+        lastTime = time
+        animationId = requestAnimationFrame(scrollDown)
+        return
+      }
+
       const delta = time - lastTime
       lastTime = time
-      // Kelajuan scroll: 15 pixel sesaat
-      container.scrollTop += 15 * (delta / 1000)
+      
+      // Berhenti scroll kalau dah sampai bawah
+      if (container.scrollTop + container.clientHeight < container.scrollHeight - 1) {
+        container.scrollTop += 15 * (delta / 1000)
+      }
       animationId = requestAnimationFrame(scrollDown)
     }
 
@@ -33,16 +44,29 @@ export default function Opening() {
       animationId = requestAnimationFrame(scrollDown)
     }, 2000) // Mula auto-scroll lepas 2 saat
 
-    // Henti auto-scroll kalau user sentuh/scroll sendiri
-    const stop = () => cancelAnimationFrame(animationId)
-    container.addEventListener('touchstart', stop, { passive: true })
-    container.addEventListener('wheel', stop, { passive: true })
+    // Pause scroll bila user sentuh, dan set timer 3 saat untuk sambung
+    const handleInteraction = () => {
+      isPaused = true
+      clearTimeout(resumeTimeout)
+      resumeTimeout = setTimeout(() => {
+        isPaused = false
+        lastTime = performance.now()
+      }, 3000)
+    }
+
+    container.addEventListener('touchstart', handleInteraction, { passive: true })
+    container.addEventListener('touchmove', handleInteraction, { passive: true })
+    container.addEventListener('wheel', handleInteraction, { passive: true })
+    container.addEventListener('mousedown', handleInteraction, { passive: true })
 
     return () => {
       clearTimeout(t)
+      clearTimeout(resumeTimeout)
       cancelAnimationFrame(animationId)
-      container.removeEventListener('touchstart', stop)
-      container.removeEventListener('wheel', stop)
+      container.removeEventListener('touchstart', handleInteraction)
+      container.removeEventListener('touchmove', handleInteraction)
+      container.removeEventListener('wheel', handleInteraction)
+      container.removeEventListener('mousedown', handleInteraction)
     }
   }, [])
 
