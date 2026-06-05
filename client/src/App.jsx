@@ -78,6 +78,17 @@ const TABS = [
 // ── Bottom Nav ────────────────────────────────────────────────────────────────
 
 function BottomNav({ active, onChange }) {
+  const [showTooltip, setShowTooltip] = useState(true)
+
+  useEffect(() => {
+    if (active === 'rsvp') setShowTooltip(false)
+  }, [active])
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowTooltip(false), 8000)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <nav className="relative z-10 flex-shrink-0 px-2 sm:px-4 border-t border-pink-deep bg-pink/95 backdrop-blur-sm flex justify-between overflow-x-auto no-scrollbar safe-bottom">
       {TABS.map(({ id, label, Icon }) => {
@@ -90,6 +101,16 @@ function BottomNav({ active, onChange }) {
               on ? 'text-cream' : 'text-pink-pale/60 hover:text-pink-pale'
             }`}
           >
+            {/* Tooltip for RSVP */}
+            {id === 'rsvp' && showTooltip && (
+              <div className="absolute -top-11 left-1/2 -translate-x-1/2 w-max animate-bounce pointer-events-none drop-shadow-md">
+                <div className="bg-cream text-pink px-3 py-1.5 rounded-lg font-sans text-[9px] font-bold tracking-widest uppercase">
+                  Klik Sini
+                </div>
+                <div className="w-0 h-0 border-l-[5px] border-l-transparent border-r-[5px] border-r-transparent border-t-[6px] border-t-cream mx-auto" />
+              </div>
+            )}
+
             {/* active top line */}
             {on && (
               <span className="absolute top-0 left-3 right-3 h-[2px] bg-cream rounded-full" />
