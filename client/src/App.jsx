@@ -163,7 +163,7 @@ export default function App() {
         src="/spring.json"
         background="transparent"
         speed="1"
-        style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%) scale(2.5)', width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 9999 }}
+        style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%) scale(4.0)', width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 9999 }}
         preserveAspectRatio="xMidYMid slice"
         loop
         autoplay
