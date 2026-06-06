@@ -38,6 +38,7 @@ export default function Footer() {
   }, [])
 
   const nextWish = () => {
+    setIsPaused(true) // Auto-pause if user manually navigates
     setFade(false)
     setTimeout(() => {
       setIndex((i) => (i + 1) % wishes.length)
@@ -46,6 +47,7 @@ export default function Footer() {
   }
 
   const prevWish = () => {
+    setIsPaused(true) // Auto-pause if user manually navigates
     setFade(false)
     setTimeout(() => {
       setIndex((i) => (i - 1 + wishes.length) % wishes.length)
@@ -67,7 +69,11 @@ export default function Footer() {
     if (wishes.length < 2 || isPaused) return
 
     timerRef.current = setInterval(() => {
-      nextWish()
+      setFade(false)
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % wishes.length)
+        setFade(true)
+      }, 300)
     }, 5000)
 
     return () => clearInterval(timerRef.current)
@@ -106,10 +112,6 @@ export default function Footer() {
         ) : wishes.length > 0 ? (
           <div className="relative z-[10] min-h-[140px] flex items-center justify-center mb-6">
             <div
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              onTouchStart={() => setIsPaused(true)}
-              onTouchEnd={() => setIsPaused(false)}
               style={{
                 transition: 'opacity 0.3s ease, transform 0.3s ease',
                 opacity: fade ? 1 : 0,
@@ -117,6 +119,10 @@ export default function Footer() {
               }}
               className="w-full border border-pink-light/40 p-5 bg-cream/80 backdrop-blur-sm relative"
             >
+              {/* Counter */}
+              <div className="absolute top-3 right-4 font-sans text-[9px] font-bold tracking-widest text-pink-light/60">
+                {index + 1} / {wishes.length}
+              </div>
               {/* Quote mark */}
               <p className="font-serif text-pink-light text-5xl leading-none mb-1 select-none">"</p>
 
@@ -145,24 +151,24 @@ export default function Footer() {
 
             {/* Controls */}
             {wishes.length > 1 && (
-              <div className="absolute -bottom-6 left-0 right-0 flex justify-center items-center gap-4">
-                <button onClick={prevWish} className="p-1 text-pink-light hover:text-pink transition-colors">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              <div className="absolute -bottom-6 left-0 right-0 flex justify-center items-center gap-6">
+                <button onClick={prevWish} className="p-2 text-pink-light hover:text-pink transition-colors">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 </button>
-                <div className="flex justify-center gap-1.5">
-                  {wishes.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => goToWish(i)}
-                      className={`block rounded-full transition-all duration-300 ${i === index
-                          ? 'w-4 h-1.5 bg-pink'
-                          : 'w-1.5 h-1.5 bg-pink-light hover:bg-pink-light/80'
-                        }`}
-                    />
-                  ))}
-                </div>
-                <button onClick={nextWish} className="p-1 text-pink-light hover:text-pink transition-colors">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                
+                <button 
+                  onClick={() => setIsPaused(!isPaused)} 
+                  className="p-2 text-pink hover:text-pink-deep transition-colors bg-pink-pale rounded-full shadow-sm"
+                >
+                  {isPaused ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="4" height="16" x="6" y="4"/><rect width="4" height="16" x="14" y="4"/></svg>
+                  )}
+                </button>
+
+                <button onClick={nextWish} className="p-2 text-pink-light hover:text-pink transition-colors">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                 </button>
               </div>
             )}
