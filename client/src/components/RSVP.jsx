@@ -35,7 +35,7 @@ export default function RSVP() {
           }
         ])
 
-      if (error) throw error
+      if (rsvpError) throw rsvpError
 
       // Jika ada ucapan, simpan juga ke jadual wishes supaya keluar di Home
       if (form.message.trim()) {
