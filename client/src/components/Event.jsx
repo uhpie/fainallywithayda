@@ -1,11 +1,7 @@
 import useInView from '../hooks/useInView'
 import { config } from '../config'
 
-const SCHEDULE = [
-  { time: '11:00 Pagi', label: 'Ketibaan Tetamu' },
-  { time: '2:00 Petang', label: 'Ketibaan Pengantin' },
-  { time: '4:00 Petang', label: 'Majlis Bersurai' },
-]
+
 
 // ── Real Google "G" logo ──────────────────────────────────────────────────────
 function GoogleCalIcon() {
@@ -59,7 +55,12 @@ export default function Event() {
   const [ref, visible] = useInView()
   const { reception, groom, bride } = config
   const date = new Date(reception.date)
-  const fullTitle = `Walimatul Urus — ${groom.name} & ${bride.name}`
+  const fullTitle = `${reception.title || 'Walimatul Urus'} — ${groom.name} & ${bride.name}`
+  const scheduleList = reception.schedule || [
+    { time: '11:00 Pagi', label: 'Ketibaan Tetamu' },
+    { time: '2:00 Petang', label: 'Ketibaan Pengantin' },
+    { time: '4:00 Petang', label: 'Majlis Bersurai' },
+  ]
 
   return (
     <section ref={ref} className={`reveal ${visible ? 'revealed' : ''}`} style={{ position: 'relative', zIndex: 10 }}>
@@ -85,8 +86,8 @@ export default function Event() {
                 <p className="font-sans text-[8px] text-brown-mid">{date.getFullYear()}</p>
               </div>
               <div>
-                <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-pink mb-1">Majlis Resepsi</p>
-                <h3 className="font-serif text-lg text-brown mb-0.5">Walimatul Urus</h3>
+                <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-pink mb-1">{reception.subtitle || 'Majlis Resepsi'}</p>
+                <h3 className="font-serif text-lg text-brown mb-0.5">{reception.title || 'Walimatul Urus'}</h3>
                 {reception.hijri && (
                   <p className="arabic text-xs text-matcha mb-0.5">{reception.hijri}</p>
                 )}
@@ -110,12 +111,12 @@ export default function Event() {
             <div className="border-t border-pink-pale pt-4 mb-5">
               <p className="font-sans text-[9px] tracking-[0.28em] uppercase text-matcha-deep mb-3">Aturcara</p>
               <div className="space-y-0">
-                {SCHEDULE.map((item, i) => (
+                {scheduleList.map((item, i) => (
                   <div key={i} className="flex items-stretch gap-3">
                     {/* Timeline line + dot */}
                     <div className="flex flex-col items-center w-4 flex-shrink-0">
                       <div className="w-2.5 h-2.5 rounded-full border-2 border-pink bg-cream flex-shrink-0 mt-1" />
-                      {i < SCHEDULE.length - 1 && (
+                      {i < scheduleList.length - 1 && (
                         <div className="w-px flex-1 bg-pink-pale my-0.5" />
                       )}
                     </div>

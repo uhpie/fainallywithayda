@@ -49,11 +49,19 @@ export const config = {
   },
 
   reception: {
+    title: 'Majlis Akad Nikah',
+    subtitle: 'Akad Nikah',
     date: '2026-06-26', // Contoh tarikh nikah (Jumaat, sehari sebelum majlis)
     dayName: 'Jumaat',
     time: '8:00 Pagi',
     venue: 'Masjid Jamek Sultan Ibrahim',
     address: 'Jalan Pejabat, 83000 Batu Pahat, Johor',
+    schedule: [
+      { time: '8:00 Pagi', label: 'Ketibaan Tetamu & Keluarga' },
+      { time: '9:00 Pagi', label: 'Majlis Akad Nikah Bermula' },
+      { time: '10:30 Pagi', label: 'Sesi Bergambar' },
+      { time: '11:00 Pagi', label: 'Jamuan Ringan & Bersurai' },
+    ]
   },
   // Nama ibu bapa (jika mahu digunakan di tempat lain)
   brideParents: {
