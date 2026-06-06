@@ -49,11 +49,11 @@ export const config = {
   },
 
   reception: {
-    date: '2026-06-27',
-    dayName: 'Sabtu',
-    time: '11:00 Pagi – 4:00 Petang',
-    venue: 'Sentosa Villa Event Venue',
-    address: 'Lot 1657, Kampung Muhibbah, Peserai, 83000 Batu Pahat, Johor',
+    date: '2026-06-26', // Contoh tarikh nikah (Jumaat, sehari sebelum majlis)
+    dayName: 'Jumaat',
+    time: '8:00 Pagi',
+    venue: 'Masjid Jamek Sultan Ibrahim',
+    address: 'Jalan Pejabat, 83000 Batu Pahat, Johor',
   },
   // Nama ibu bapa (jika mahu digunakan di tempat lain)
   brideParents: {

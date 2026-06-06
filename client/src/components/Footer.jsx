@@ -20,7 +20,7 @@ export default function Footer() {
   async function fetchWishes() {
     setLoading(true)
     const { data, error } = await supabase
-      .from('wishes')
+      .from('wishes_nikah')
       .select('*')
       .order('created_at', { ascending: false })
 

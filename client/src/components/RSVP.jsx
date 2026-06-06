@@ -23,8 +23,8 @@ export default function RSVP() {
     e.preventDefault()
     setStatus('loading')
     try {
-      const { error } = await supabase
-        .from('rsvps')
+      const { error: rsvpError } = await supabase
+        .from('rsvp_nikah')
         .insert([
           {
             name: form.name.trim(),
