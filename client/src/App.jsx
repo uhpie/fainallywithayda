@@ -159,6 +159,15 @@ export default function App() {
         backgroundColor: config.background.desktopColor,
       }}
     >
+      <dotlottie-player
+        src="/spring.json"
+        background="transparent"
+        speed="1"
+        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', pointerEvents: 'none', zIndex: 9999 }}
+        loop
+        autoplay
+      ></dotlottie-player>
+
       <div
         className={`w-full max-w-phone shadow-phone flex flex-col relative rounded-[20px] sm:rounded-[32px] overflow-hidden${config.background.image ? ' has-bg' : ''}`}
         style={{
