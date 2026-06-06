@@ -14,6 +14,7 @@ export default function Footer() {
   const [loading, setLoading] = useState(true)
   const [index, setIndex] = useState(0)
   const [fade, setFade] = useState(true)
+  const [isPaused, setIsPaused] = useState(false)
   const timerRef = useRef(null)
 
   async function fetchWishes() {
@@ -36,22 +37,41 @@ export default function Footer() {
     return () => window.removeEventListener('wish-added', fetchWishes)
   }, [])
 
+  const nextWish = () => {
+    setFade(false)
+    setTimeout(() => {
+      setIndex((i) => (i + 1) % wishes.length)
+      setFade(true)
+    }, 300)
+  }
+
+  const prevWish = () => {
+    setFade(false)
+    setTimeout(() => {
+      setIndex((i) => (i - 1 + wishes.length) % wishes.length)
+      setFade(true)
+    }, 300)
+  }
+
+  const goToWish = (targetIndex) => {
+    if (targetIndex === index) return
+    setFade(false)
+    setTimeout(() => {
+      setIndex(targetIndex)
+      setFade(true)
+    }, 300)
+  }
+
   // Auto-advance slideshow
   useEffect(() => {
-    if (wishes.length < 2) return
+    if (wishes.length < 2 || isPaused) return
 
     timerRef.current = setInterval(() => {
-      // Fade out
-      setFade(false)
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % wishes.length)
-        // Fade in
-        setFade(true)
-      }, 400)
-    }, 3500)
+      nextWish()
+    }, 5000)
 
     return () => clearInterval(timerRef.current)
-  }, [wishes])
+  }, [wishes, isPaused])
 
   const w = wishes[index]
   const colorClass = avatarColors[index % avatarColors.length]
@@ -84,14 +104,18 @@ export default function Footer() {
             Loading...
           </p>
         ) : wishes.length > 0 ? (
-          <div className="relative z-[10] min-h-[140px] flex items-center justify-center">
+          <div className="relative z-[10] min-h-[140px] flex items-center justify-center mb-6">
             <div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={() => setIsPaused(true)}
+              onTouchEnd={() => setIsPaused(false)}
               style={{
-                transition: 'opacity 0.4s ease, transform 0.4s ease',
+                transition: 'opacity 0.3s ease, transform 0.3s ease',
                 opacity: fade ? 1 : 0,
                 transform: fade ? 'translateY(0)' : 'translateY(8px)',
               }}
-              className="w-full border p-5 bg-cream"
+              className="w-full border border-pink-light/40 p-5 bg-cream/80 backdrop-blur-sm relative"
             >
               {/* Quote mark */}
               <p className="font-serif text-pink-light text-5xl leading-none mb-1 select-none">"</p>
@@ -119,18 +143,27 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Dot indicators */}
+            {/* Controls */}
             {wishes.length > 1 && (
-              <div className="absolute -bottom-5 left-0 right-0 flex justify-center gap-1.5">
-                {wishes.map((_, i) => (
-                  <span
-                    key={i}
-                    className={`block rounded-full transition-all duration-300 ${i === index
-                        ? 'w-4 h-1.5 bg-pink'
-                        : 'w-1.5 h-1.5 bg-pink-light'
-                      }`}
-                  />
-                ))}
+              <div className="absolute -bottom-6 left-0 right-0 flex justify-center items-center gap-4">
+                <button onClick={prevWish} className="p-1 text-pink-light hover:text-pink transition-colors">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <div className="flex justify-center gap-1.5">
+                  {wishes.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => goToWish(i)}
+                      className={`block rounded-full transition-all duration-300 ${i === index
+                          ? 'w-4 h-1.5 bg-pink'
+                          : 'w-1.5 h-1.5 bg-pink-light hover:bg-pink-light/80'
+                        }`}
+                    />
+                  ))}
+                </div>
+                <button onClick={nextWish} className="p-1 text-pink-light hover:text-pink transition-colors">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
               </div>
             )}
           </div>
