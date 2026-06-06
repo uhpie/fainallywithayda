@@ -54,13 +54,14 @@ export const config = {
     date: '2026-06-26', // Contoh tarikh nikah (Jumaat, sehari sebelum majlis)
     dayName: 'Jumaat',
     time: '8:00 Pagi',
-    venue: 'Masjid Jamek Sultan Ibrahim',
-    address: 'Jalan Pejabat, 83000 Batu Pahat, Johor',
+    venue: 'Sentosa Villa Event Venue',
+    address: 'Lot 1657, Kampung Muhibbah, Peserai, 83000 Batu Pahat, Johor',
     schedule: [
-      { time: '8:00 Pagi', label: 'Ketibaan Tetamu & Keluarga' },
-      { time: '9:00 Pagi', label: 'Majlis Akad Nikah Bermula' },
-      { time: '10:30 Pagi', label: 'Sesi Bergambar' },
-      { time: '11:00 Pagi', label: 'Jamuan Ringan & Bersurai' },
+      { time: '8:00 Malam', label: 'Kehadiran Tetamu Jemputan' },
+      { time: '8:30 Malam', label: 'Ketibaan Pengantin' },
+      { time: '9:30 Malam', label: 'Sesi Bergambar' },
+      { time: '10:00 Malam', label: 'Jamuan Makan' },
+      { time: '11:00 Malam', label: 'Majlis Bersurai' },
     ]
   },
   // Nama ibu bapa (jika mahu digunakan di tempat lain)
