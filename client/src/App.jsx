@@ -140,9 +140,14 @@ function TabContent({ tab }) {
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(() => {
+    return new URLSearchParams(window.location.search).has('tab')
+  })
   const [playMusic, setPlayMusic] = useState(false)
-  const [tab, setTab] = useState('home')
+  const [tab, setTab] = useState(() => {
+    const defaultTab = new URLSearchParams(window.location.search).get('tab')
+    return defaultTab || 'home'
+  })
   const contentRef = useRef(null)
 
   // scroll to top on tab change
@@ -168,7 +173,6 @@ export default function App() {
         loop
         autoplay
       ></dotlottie-player>
-
       <div
         className={`w-full max-w-phone shadow-phone flex flex-col relative rounded-[20px] sm:rounded-[32px] overflow-hidden${config.background.image ? ' has-bg' : ''}`}
         style={{
